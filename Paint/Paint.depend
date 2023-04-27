@@ -12,3 +12,16 @@
 	<locale.h>
 	"function.h"
 
+1682598938 source:c:\users\lucas\onedrive\Área de trabalho\paint\paint\paint\function.c
+	<stdio.h>
+	<GL/glut.h>
+	"function.h"
+
+1682597608 c:\users\lucas\onedrive\Área de trabalho\paint\paint\paint\function.h
+
+1682568958 source:c:\users\lucas\onedrive\Área de trabalho\paint\paint\paint\main.c
+	<windows.h>
+	<GL/glut.h>
+	<locale.h>
+	"function.h"
+

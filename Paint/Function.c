@@ -9,7 +9,10 @@
 /*Falta eu criar uma strutura para onde cada um dos elementos correponder� a uma figura criada*/
 
 int count_click = 0; //Vari�vel global para click do mouse
-
+float y_Position;
+float x_Position;
+int mode = 0;
+int nextPolygon = 1;
 Point points[MAX_POINT];
 int amout_of_points = 0;
 
@@ -22,8 +25,8 @@ int amount_of_polygon = 0;  //N�mero de poligonos
 
 
 void addPoint(float variabel_x, float variable_y){
-    points[amout_of_points].variable_x = variabel_x;
-    points[amout_of_points].variable_y = variable_y;
+    Point newpoint = {variabel_x, variable_y};
+    points[amout_of_points] = newpoint;
 
     amout_of_points++;
 }
@@ -64,66 +67,105 @@ void designLine(){
 
 void designPoligon()
 {
-    glBegin(GL_POLYGON);
     for(int counter = 0; counter < amout_of_points; counter++)
     {
         glColor3f(0, 0, 1);
-        glVertex2f(points[counter].variable_x, points[counter].variable_y);
+        Polygon_figure current = polygon[counter];
+         Point aux;
+
+        glBegin(GL_POLYGON);
+            for(int vertex = 0; vertex < current.length; vertex++)
+            {
+                aux = current.point[vertex];
+                glVertex2f(aux.variable_x, aux.variable_y);
+            }
+        glEnd();
     }
-    glEnd();
 }
 
 void add_Poligon(float variabele_x, float variable_y)
 {
     int count = 1;
-    if(amout_of_points < 3)
-        return;
 
-    polygon[amount_of_polygon].point[amout_of_points].variable_x = variabele_x;
-    polygon[amount_of_polygon].point[amout_of_points].variable_y = variable_y;
+    Point point = {variabele_x, variable_y};
+    Polygon_figure nPolygon;
 
-    amount_of_polygon++;
+    if(nextPolygon)
+    {
+        nPolygon.point[0] = point;
+        nPolygon.length = 1;
+        nextPolygon = 0;
+        amount_of_polygon += 1;
+    }
 
+    else
+    {
+        nPolygon.length++;
+        nPolygon = polygon[amount_of_polygon];
+        Point *vertex = nPolygon.point;
+        vertex[nPolygon.length] = point;
+
+
+    }
+    //polygon[amount_of_polygon].point[amout_of_points].variable_x = variabele_x;
+    //polygon[amount_of_polygon].point[amout_of_points].variable_y = variable_y;
 }
 
 void mouse(int button, int state, int variable_x, int variable_y)
 {
 
+
     float scale_factor;
+
     if(window_width > window_height){
         scale_factor = (window_height / 2.0);
     }else{
         scale_factor = (window_width / 2.0);
     }
 
-    float x_Position = ((float)variable_x / scale_factor) - 1.0;
-    float y_Position = 1.0 - ((float)variable_y / scale_factor);
+    x_Position = ((float)variable_x / scale_factor) - 1.0;
+    y_Position = 1.0 - ((float)variable_y / scale_factor);
 
+    switch(button)
+    {
+        case GLUT_LEFT_BUTTON:
+            switch(mode)
+            {
+                case 0:
+                    addPoint(x_Position, y_Position);
+                    count_click++;
+                    break;
+
+                case 1:
+                    addPoint(x_Position, y_Position);
+                    addLines(points[amout_of_points - 1].variable_x, points[amout_of_points - 1].variable_y,
+                     points[amout_of_points - 2].variable_x, points[amout_of_points - 2].variable_y);
+            count_click = 0;
+                    break;
+                case 2:
+                    addPoint(x_Position, y_Position);
+                    add_Poligon(x_Position, y_Position);
+                    break;
+            }
+
+    }
 }
 
-void functionMenu(int value, float x_Position, float y_Position)
+void functionMenu(int value)
 {
     switch(value)
     {
         case 0:
-            printf("Desenhar ponto\n");
-            addPoint(x_Position, y_Position);
-            count_click++;
+            mode = 0;
+            nextPolygon = 1;
             break;
         case 1:
-            printf("Desenhar linha\n");
-
-            addPoint(x_Position, y_Position);
-            addLines(points[amout_of_points - 1].variable_x, points[amout_of_points - 1].variable_y,
-                     points[amout_of_points - 2].variable_x, points[amout_of_points - 2].variable_y);
-            count_click = 0;
+            mode = 1;
+            nextPolygon = 1;
             break;
 
         case 2:
-            printf("Desenhar poligono\n");
-
-            addPoint(x_Position, y_Position);
-            add_Poligon(x_Position, y_Position);
+            mode = 2;
             break;
 
         case 3:
@@ -144,6 +186,6 @@ void createMenu()
     glutAddMenuEntry("Create polygon", 2);
     glutAddMenuEntry("Exit", 3);
 
-    glutAttachMenu(GLUT_LEFT_BUTTON);
+    glutAttachMenu(GLUT_RIGHT_BUTTON);
 
 }

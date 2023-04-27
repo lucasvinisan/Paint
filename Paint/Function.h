@@ -24,6 +24,7 @@ typedef struct
 typedef struct
 {
     Point point[MAX_POINT];
+    int length;
 }Polygon_figure;
 
 //Fun��o para adicionar um ponto
