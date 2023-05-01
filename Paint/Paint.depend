@@ -74,3 +74,52 @@
 	<gl/glut.h>
 	"buffer.h"
 
+1682966839 source:c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\buffer.c
+	<stdlib.h>
+	<stdio.h>
+	<gl/glut.h>
+	"buffer.h"
+	"function.h"
+
+1682954103 c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\buffer.h
+	"point.h"
+	"line.h"
+	"polygon.h"
+	"function.h"
+
+1682954103 c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\point.h
+
+1682954103 c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\line.h
+	"point.h"
+
+1682954103 c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\polygon.h
+	"point.h"
+
+1682954103 c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\function.h
+
+1682967108 source:c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\function.c
+	<stdlib.h>
+	<stdio.h>
+	<gl/glut.h>
+	"function.h"
+	"buffer.h"
+
+1682954103 source:c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\line.c
+	<stdlib.h>
+	"line.h"
+
+1682954103 source:c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	<gl/glut.h>
+	"buffer.h"
+
+1682954103 source:c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\point.c
+	<stdlib.h>
+	"point.h"
+
+1682954103 source:c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\polygon.c
+	<stdlib.h>
+	"polygon.h"
+

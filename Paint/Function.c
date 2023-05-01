@@ -5,7 +5,9 @@
 #include "function.h"
 #include "buffer.h"
 
-// Don't Works
+
+
+
 void preview_line(Line_Figure line)
 {
     glClear(GL_COLOR_BUFFER_BIT);
@@ -52,16 +54,16 @@ void mouse(int button, int state, int x, int y)
     Point_Figure click_down = buffer_get_mouse_down();
     Point_Figure click_up = buffer_get_mouse_up();
     Line_Figure line = {click_down, click_up};
+    int mx, my, t, px, py;
+
 
     switch(button)
     {
     case GLUT_LEFT_BUTTON:
-
         if(state == GLUT_DOWN)
         {
             buffer_set_mouse_down(x, y);
             //printf("click down at <%d, %d>\n", x, y);
-
             switch(mode)
             {
             case 0:
@@ -70,6 +72,9 @@ void mouse(int button, int state, int x, int y)
 
             case 1:
                 buffer_add_line_temp(click_down);
+                break;
+            case 3:
+                break;
 
             default:
                 break;
@@ -175,26 +180,59 @@ void menu(int value)
 
 void create_menu()
 {
-    glutCreateMenu(menu);
+    int subMenu_createFigure = glutCreateMenu(menu);
     glutAddMenuEntry("Create Point", 0);
     glutAddMenuEntry("Create Line", 1);
     glutAddMenuEntry("Create Polygon", 2);
+
+    int subMenu_SelectFigure = glutCreateMenu(menu);
     glutAddMenuEntry("Select Point", 3);
     glutAddMenuEntry("Select Line", 4);
     glutAddMenuEntry("Select Polygon", 5);
+
+    int subMenu_scaleFigure = glutCreateMenu(menu);
     glutAddMenuEntry("Scale Point", 6);
     glutAddMenuEntry("Scale Line", 7);
     glutAddMenuEntry("Scale Polygon", 8);
+
+    int subMenu_rotateFigure = glutCreateMenu(menu);
     glutAddMenuEntry("Rotate Point", 9);
     glutAddMenuEntry("Rotate Line", 10);
     glutAddMenuEntry("Rotate Polygon", 11);
+
+    int subMenu_translateFigure = glutCreateMenu(menu);
     glutAddMenuEntry("Translate Point", 12);
     glutAddMenuEntry("Translate Line", 13);
     glutAddMenuEntry("Translate Polygon", 14);
+
+    int subMenu_deleteFigiure = glutCreateMenu(menu);
     glutAddMenuEntry("Delete Point", 15);
     glutAddMenuEntry("Delete Line", 16);
     glutAddMenuEntry("Delete Polygon", 17);
+
+    int menu = glutCreateMenu(menu);
+    glutAddSubMenu("Create Figure", subMenu_createFigure);
+    glutAddSubMenu("Select Figure", subMenu_SelectFigure);
+    glutAddSubMenu("Scale Figure", subMenu_scaleFigure);
+    glutAddSubMenu("Rotate Figure", subMenu_rotateFigure);
+    glutAddSubMenu("Translate Figure", subMenu_rotateFigure);
+    glutAddSubMenu("Delete Figure", subMenu_deleteFigiure);
+
     glutAddMenuEntry("Exit", 18);
 
     glutAttachMenu(GLUT_RIGHT_BUTTON);
+}
+
+
+
+void select_point(float px, float py, float mx, float my, float t)
+{
+    if(mx <= px + t && mx >= px - t)
+    {
+        if(my <= py + t && my >= py - t){
+            printf("Ponto selecionado");
+        }
+    }else{
+        printf("nenhum ponto selecionado!");
+    }
 }
