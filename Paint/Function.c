@@ -1,191 +1,200 @@
+#include <stdlib.h>
 #include <stdio.h>
-#include <GL/glut.h>
-#define MAX_POINT 100 //definindo um tamamho m�ximo de n�mero de pontos
-#define MAX_LINE 100
-#define MAX_FIGURES 100
-#define MAX_POLYGON 100
+#include <gl/glut.h>
+
 #include "function.h"
+#include "buffer.h"
 
-/*Falta eu criar uma strutura para onde cada um dos elementos correponder� a uma figura criada*/
+// Don't Works
+void preview_line(Line_Figure line)
+{
+    glClear(GL_COLOR_BUFFER_BIT);
 
-int count_click = 0; //Vari�vel global para click do mouse
-float y_Position;
-float x_Position;
-int mode = 0;
-int nextPolygon = 1;
-Point points[MAX_POINT];
-int amout_of_points = 0;
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-Line lines[MAX_LINE];
-int amout_of_line = 0;
-
-//Modificar a fun��o de criar poligon
-Polygon_figure polygon[MAX_POLYGON];
-int amount_of_polygon = 0;  //N�mero de poligonos
-
-
-void addPoint(float variabel_x, float variable_y){
-    Point newpoint = {variabel_x, variable_y};
-    points[amout_of_points] = newpoint;
-
-    amout_of_points++;
-}
-
-
-void designPoint(){
-    glPointSize(10.0);
-    glBegin(GL_POINTS);
-    for(int counter = 0; counter < amout_of_points; counter++)
-    {
-        glColor3f(1, 0, 0);
-        glVertex2f(points[counter].variable_x, points[counter].variable_y); //Localiza��o
-
-    }
-    glEnd();
-}
-
-void addLines(float variable_x1, float variabel_y1, float variable_x2, float variable_y2){
-    lines[amout_of_line]._start.variable_x = variable_x1;
-    lines[amout_of_line]._start.variable_y = variabel_y1;
-
-    lines[amout_of_line]._end.variable_x = variable_x2;
-    lines[amout_of_line]._end.variable_y = variable_y2;
-
-    amout_of_line++;
-}
-
-void designLine(){
-    glLineWidth(2.0);
     glBegin(GL_LINES);
-    for(int counter = 0; counter < amout_of_line; counter++){
-        glColor3f(1, 0, 0);
-        glVertex2f(lines[counter]._start.variable_x, lines[counter]._start.variable_y);
-        glVertex2f(lines[counter]._end.variable_x, lines[counter]._end.variable_y);
-    }
+        glColor3f(0, 1, 0);
+        glVertex2f(line.start.x, line.start.y);
+        glVertex2f(line.end.x, line.end.y);
     glEnd();
+
+    glDisable(GL_BLEND);
 }
 
-void designPoligon()
+void mouse_motion(int x, int y)
 {
-    for(int counter = 0; counter < amout_of_points; counter++)
+    int mode = buffer_get_mode();
+    Point_Figure click_down = buffer_get_mouse_down();
+    Point_Figure click_up = buffer_get_mouse_up();
+    Line_Figure line = {click_down, click_up};
+
+    switch(mode)
     {
-        glColor3f(0, 0, 1);
-        Polygon_figure current = polygon[counter];
-         Point aux;
-
-        glBegin(GL_POLYGON);
-            for(int vertex = 0; vertex < current.length; vertex++)
-            {
-                aux = current.point[vertex];
-                glVertex2f(aux.variable_x, aux.variable_y);
-            }
-        glEnd();
-    }
-}
-
-void add_Poligon(float variabele_x, float variable_y)
-{
-    int count = 1;
-
-    Point point = {variabele_x, variable_y};
-    Polygon_figure nPolygon;
-
-    if(nextPolygon)
-    {
-        nPolygon.point[0] = point;
-        nPolygon.length = 1;
-        nextPolygon = 0;
-        amount_of_polygon += 1;
-    }
-
-    else
-    {
-        nPolygon.length++;
-        nPolygon = polygon[amount_of_polygon];
-        Point *vertex = nPolygon.point;
-        vertex[nPolygon.length] = point;
-
-
-    }
-    //polygon[amount_of_polygon].point[amout_of_points].variable_x = variabele_x;
-    //polygon[amount_of_polygon].point[amout_of_points].variable_y = variable_y;
-}
-
-void mouse(int button, int state, int variable_x, int variable_y)
-{
-
-
-    float scale_factor;
-
-    if(window_width > window_height){
-        scale_factor = (window_height / 2.0);
-    }else{
-        scale_factor = (window_width / 2.0);
-    }
-
-    x_Position = ((float)variable_x / scale_factor) - 1.0;
-    y_Position = 1.0 - ((float)variable_y / scale_factor);
-
-    switch(button)
-    {
-        case GLUT_LEFT_BUTTON:
-            switch(mode)
-            {
-                case 0:
-                    addPoint(x_Position, y_Position);
-                    count_click++;
-                    break;
-
-                case 1:
-                    addPoint(x_Position, y_Position);
-                    addLines(points[amout_of_points - 1].variable_x, points[amout_of_points - 1].variable_y,
-                     points[amout_of_points - 2].variable_x, points[amout_of_points - 2].variable_y);
-            count_click = 0;
-                    break;
-                case 2:
-                    addPoint(x_Position, y_Position);
-                    add_Poligon(x_Position, y_Position);
-                    break;
-            }
-
-    }
-}
-
-void functionMenu(int value)
-{
-    switch(value)
-    {
-        case 0:
-            mode = 0;
-            nextPolygon = 1;
-            break;
         case 1:
-            mode = 1;
-            nextPolygon = 1;
+//            if(!isPointsEquals(click_down, click_up))
+//            {
+//                preview_line(line);
+//            }
             break;
 
         case 2:
-            mode = 2;
             break;
 
-        case 3:
-            exit(0);
-            break;
         default:
-
             break;
     }
+}
+
+void mouse(int button, int state, int x, int y)
+{
+    int mode = buffer_get_mode();
+    Point_Figure click_down = buffer_get_mouse_down();
+    Point_Figure click_up = buffer_get_mouse_up();
+    Line_Figure line = {click_down, click_up};
+
+    switch(button)
+    {
+    case GLUT_LEFT_BUTTON:
+
+        if(state == GLUT_DOWN)
+        {
+            buffer_set_mouse_down(x, y);
+            //printf("click down at <%d, %d>\n", x, y);
+
+            switch(mode)
+            {
+            case 0:
+                buffer_add_point(x, y);
+                break;
+
+            case 1:
+                buffer_add_line_temp(click_down);
+
+            default:
+                break;
+            }
+        }
+
+        else if(state == GLUT_UP)
+        {
+            //printf("click up at <%d, %d>\n", x, y);
+            buffer_set_mouse_up(x, y);
+        }
+
+        break;
+    }
+}
+
+void menu(int value)
+{
+    switch(value)
+    {
+        case 0: // Add Point
+            buffer_set_mode(0);
+            break;
+
+        case 1: // Add Line
+            buffer_set_mode(1);
+            break;
+
+        case 2: // Add Polygon
+            buffer_set_mode(2);
+            break;
+
+        case 3: // Select Point
+            buffer_set_mode(4);
+            break;
+
+        case 4: // Select Line
+            buffer_set_mode(4);
+            break;
+
+        case 5: // Select Polygon
+            buffer_set_mode(5);
+            break;
+
+        case 6: // Scale Point
+            buffer_set_mode(6);
+            break;
+
+        case 7: // Scale Line
+            buffer_set_mode(7);
+            break;
+
+        case 8: // Scale Polygon
+            buffer_set_mode(8);
+            break;
+
+        case 9: // Rotate Point
+            buffer_set_mode(9);
+            break;
+
+        case 10: // Rotate Line
+            buffer_set_mode(10);
+            break;
+
+        case 11: // Rotate Polygon
+            buffer_set_mode(11);
+            break;
+
+        case 12: // Translate Point
+            buffer_set_mode(12);
+            break;
+
+        case 13: // Translate Line
+            buffer_set_mode(14);
+            break;
+
+        case 14: // Translate Polygon
+            buffer_set_mode(14);
+            break;
+
+        case 15: // Delete Point
+            buffer_set_mode(15);
+            break;
+
+        case 16: // Delete Line
+            buffer_set_mode(16);
+            break;
+
+        case 17: // Delete Polygon
+            exit(0);
+            break;
+
+        case 18: // Exit
+            exit(0);
+            break;
+
+        default:
+            break;
+    }
+
     glutPostRedisplay();
 }
 
-void createMenu()
+void create_menu()
 {
-    glutCreateMenu(functionMenu);
-    glutAddMenuEntry("Create point", 0);
-    glutAddMenuEntry("Create line", 1);
-    glutAddMenuEntry("Create polygon", 2);
-    glutAddMenuEntry("Exit", 3);
+    glutCreateMenu(menu);
+    glutAddMenuEntry("Create Point", 0);
+    glutAddMenuEntry("Create Line", 1);
+    glutAddMenuEntry("Create Polygon", 2);
+    glutAddMenuEntry("Select Point", 3);
+    glutAddMenuEntry("Select Line", 4);
+    glutAddMenuEntry("Select Polygon", 5);
+    glutAddMenuEntry("Scale Point", 6);
+    glutAddMenuEntry("Scale Line", 7);
+    glutAddMenuEntry("Scale Polygon", 8);
+    glutAddMenuEntry("Rotate Point", 9);
+    glutAddMenuEntry("Rotate Line", 10);
+    glutAddMenuEntry("Rotate Polygon", 11);
+    glutAddMenuEntry("Translate Point", 12);
+    glutAddMenuEntry("Translate Line", 13);
+    glutAddMenuEntry("Translate Polygon", 14);
+    glutAddMenuEntry("Delete Point", 15);
+    glutAddMenuEntry("Delete Line", 16);
+    glutAddMenuEntry("Delete Polygon", 17);
+    glutAddMenuEntry("Exit", 18);
 
     glutAttachMenu(GLUT_RIGHT_BUTTON);
-
 }
