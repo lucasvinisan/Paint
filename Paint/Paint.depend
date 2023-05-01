@@ -45,3 +45,32 @@
 1682948286 c:\users\kelthon\desktop\paint\paint\polygon.h
 	"point.h"
 
+1682950663 source:c:\users\kelthon\desktop\paint\paint\buffer.c
+	<stdlib.h>
+	<stdio.h>
+	<gl/glut.h>
+	"buffer.h"
+	"function.h"
+
+1682950698 c:\users\kelthon\desktop\paint\paint\buffer.h
+	"point.h"
+	"line.h"
+	"polygon.h"
+	"function.h"
+
+1682948485 c:\users\kelthon\desktop\paint\paint\function.h
+
+1682950361 source:c:\users\kelthon\desktop\paint\paint\function.c
+	<stdlib.h>
+	<stdio.h>
+	<gl/glut.h>
+	"function.h"
+	"buffer.h"
+
+1682948062 source:c:\users\kelthon\desktop\paint\paint\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	<gl/glut.h>
+	"buffer.h"
+

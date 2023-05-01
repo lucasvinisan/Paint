@@ -18,7 +18,6 @@ typedef struct {
     PointList *points_buffer;
 
     LineList *lines_buffer;
-    PointList *lines_temp_buffer;
 
     PolygonList *polygons_buffer;
     PointList *polygons_temp_buffer;

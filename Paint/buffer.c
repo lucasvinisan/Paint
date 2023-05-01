@@ -13,7 +13,7 @@ void buffer_init() {
         buffer_initialized = 1;
         buffer.mode = 1;
         buffer.select_toggle = 0;
-        buffer.is_next_line = 1;
+        buffer.is_next_line = 0;
         buffer.is_next_polygon = 1;
 
         buffer.mouse_down_position.x = 0;
@@ -25,7 +25,6 @@ void buffer_init() {
         buffer.points_buffer = newPointList();
 
         buffer.lines_buffer = newLineList();
-        buffer.lines_temp_buffer = newPointList();
 
         buffer.polygons_buffer = newPolygonList();
         buffer.polygons_temp_buffer = newPointList();
@@ -68,23 +67,14 @@ void buffer_add_point(float x, float y) {
     addPointList(buffer.points_buffer, point);
 }
 
-void buffer_clear_line_temp() {
-    clearPointList(buffer.lines_temp_buffer);
-}
-
 void buffer_add_line_temp(Point_Figure point) {
-    if(lengthPointList(buffer.lines_temp_buffer) == 1) {
-        Point_Figure start;
-
-        getPointList(buffer.lines_temp_buffer, 0, &start);
-        buffer_add_line(start, point);
-
-        buffer_clear_line_temp();
+    if(buffer.is_next_line) {
+        buffer_add_line(buffer_get_mouse_down(), point);
+        buffer.is_next_line = 0;
     }
 
     else {
-//        printf("Point (%.2f, %.2f) added to lines temp buffer\n", point.x, point.y);
-        addPointList(buffer.lines_temp_buffer, point);
+         buffer.is_next_line = 1;
     }
 }
 
@@ -118,6 +108,7 @@ void buffer_draw_points() {
         }
     glEnd();
 }
+
 void buffer_draw_lines() {
 
     glLineWidth(2.0);
