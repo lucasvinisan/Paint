@@ -35,9 +35,19 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Function.h" />
+		<Unit filename="buffer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="buffer.h" />
+		<Unit filename="line.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="line.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="point.h" />
+		<Unit filename="polygon.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

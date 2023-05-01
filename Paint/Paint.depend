@@ -25,3 +25,23 @@
 	<locale.h>
 	"function.h"
 
+1682948363 source:c:\users\kelthon\desktop\paint\paint\line.c
+	<stdlib.h>
+	"line.h"
+
+1682948177 c:\users\kelthon\desktop\paint\paint\line.h
+	"point.h"
+
+1682948216 c:\users\kelthon\desktop\paint\paint\point.h
+
+1682948431 source:c:\users\kelthon\desktop\paint\paint\point.c
+	<stdlib.h>
+	"point.h"
+
+1682948479 source:c:\users\kelthon\desktop\paint\paint\polygon.c
+	<stdlib.h>
+	"polygon.h"
+
+1682948286 c:\users\kelthon\desktop\paint\paint\polygon.h
+	"point.h"
+
