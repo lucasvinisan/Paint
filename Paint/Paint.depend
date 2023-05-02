@@ -45,7 +45,7 @@
 1682948286 c:\users\kelthon\desktop\paint\paint\polygon.h
 	"point.h"
 
-1682950663 source:c:\users\kelthon\desktop\paint\paint\buffer.c
+1682953342 source:c:\users\kelthon\desktop\paint\paint\buffer.c
 	<stdlib.h>
 	<stdio.h>
 	<gl/glut.h>
@@ -60,7 +60,7 @@
 
 1682948485 c:\users\kelthon\desktop\paint\paint\function.h
 
-1682950361 source:c:\users\kelthon\desktop\paint\paint\function.c
+1682950841 source:c:\users\kelthon\desktop\paint\paint\function.c
 	<stdlib.h>
 	<stdio.h>
 	<gl/glut.h>

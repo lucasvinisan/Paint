@@ -11,10 +11,10 @@ int buffer_initialized = 0;
 void buffer_init() {
     if(!buffer_initialized) {
         buffer_initialized = 1;
-        buffer.mode = 1;
+        buffer.mode = 2;
         buffer.select_toggle = 0;
         buffer.is_next_line = 0;
-        buffer.is_next_polygon = 1;
+        buffer.is_next_polygon = 0;
 
         buffer.mouse_down_position.x = 0;
         buffer.mouse_down_position.y = 0;
@@ -28,6 +28,14 @@ void buffer_init() {
 
         buffer.polygons_buffer = newPolygonList();
         buffer.polygons_temp_buffer = newPointList();
+
+        Point_Figure v1 = {300, 200};
+        Point_Figure v2 = {250, 300};
+        Point_Figure v3 = {350, 300};
+
+        addPointList(buffer.polygons_temp_buffer, v1);
+        addPointList(buffer.polygons_temp_buffer, v2);
+        addPointList(buffer.polygons_temp_buffer, v3);
     }
 }
 
@@ -36,6 +44,7 @@ Buffer get_buffer() {
 }
 
 void buffer_set_mode(int mode) {
+    if(mode == 2) buffer.is_next_polygon = 1;
     buffer.mode = mode;
 }
 
@@ -87,6 +96,17 @@ void buffer_add_line(Point_Figure start, Point_Figure end) {
 
 void buffer_clear_polygon_temp() {
     clearPointList(buffer.polygons_temp_buffer);
+}
+
+void buffer_add_polygon_temp(Point_Figure point) {
+    if(buffer.is_next_polygon) {
+        buffer_add_polygon(buffer.polygons_temp_buffer);
+        clearPointList(buffer.polygons_temp_buffer);
+        buffer.is_next_polygon = 0;
+    }
+    else {
+        addPointList(buffer.polygons_temp_buffer, point);
+    }
 }
 
 void buffer_add_polygon(PointList vertex_list) {
@@ -145,7 +165,42 @@ void buffer_draw_polygons() {
     glEnd();
 }
 
+void buffer_draw_temp_polygon() {
+    Point_Figure point;
+
+    int length = lengthPointList(buffer.polygons_temp_buffer);
+
+    glColor3f(0.0, 0.0, 1.0);
+
+    if(length > 2) {
+        glBegin(GL_POLYGON);
+            for(int i = 0; i < length; i++) {
+                getPointList(buffer.polygons_temp_buffer, i, &point);
+                glVertex2f(point.x, point.y);
+            }
+        glEnd();
+    }
+    else if(length > 1) {
+        glBegin(GL_LINES);
+            for(int i = 0; i < length; i++) {
+                getPointList(buffer.polygons_temp_buffer, i, &point);
+                glVertex2f(point.x, point.y);
+            }
+        glEnd();
+    }
+    else {
+        glBegin(GL_POINTS);
+            for(int i = 0; i < length; i++) {
+                getPointList(buffer.polygons_temp_buffer, i, &point);
+                glVertex2f(point.x, point.y);
+            }
+        glEnd();
+    }
+
+}
+
 void buffer_draw_all() {
+    buffer_draw_temp_polygon();
     buffer_draw_polygons();
     buffer_draw_points();
     buffer_draw_lines();
