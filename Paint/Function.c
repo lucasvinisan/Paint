@@ -5,47 +5,9 @@
 #include "function.h"
 #include "buffer.h"
 
-
-
-
-void preview_line(Line_Figure line)
-{
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-    glBegin(GL_LINES);
-        glColor3f(0, 1, 0);
-        glVertex2f(line.start.x, line.start.y);
-        glVertex2f(line.end.x, line.end.y);
-    glEnd();
-
-    glDisable(GL_BLEND);
-}
-
 void mouse_motion(int x, int y)
 {
-    int mode = buffer_get_mode();
-    Point_Figure click_down = buffer_get_mouse_down();
-    Point_Figure click_up = buffer_get_mouse_up();
-    Line_Figure line = {click_down, click_up};
 
-    switch(mode)
-    {
-        case 1:
-//            if(!isPointsEquals(click_down, click_up))
-//            {
-//                preview_line(line);
-//            }
-            break;
-
-        case 2:
-            break;
-
-        default:
-            break;
-    }
 }
 
 void mouse(int button, int state, int x, int y)
@@ -73,6 +35,10 @@ void mouse(int button, int state, int x, int y)
             case 1:
                 buffer_add_line_temp(click_down);
                 break;
+            case 2:
+                buffer_add_polygon_temp();
+                break;
+
             case 3:
                 px = click_down.x;
                 py = click_down.y;
