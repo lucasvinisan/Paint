@@ -54,7 +54,7 @@ void mouse(int button, int state, int x, int y)
     Point_Figure click_down = buffer_get_mouse_down();
     Point_Figure click_up = buffer_get_mouse_up();
     Line_Figure line = {click_down, click_up};
-    int mx, my, t, px, py;
+    int t = 10, px, py;
 
 
     switch(button)
@@ -74,6 +74,9 @@ void mouse(int button, int state, int x, int y)
                 buffer_add_line_temp(click_down);
                 break;
             case 3:
+                px = click_down.x;
+                py = click_down.y;
+                select_point(px, py, x, y, t);
                 break;
 
             default:
@@ -108,7 +111,7 @@ void menu(int value)
             break;
 
         case 3: // Select Point
-            buffer_set_mode(4);
+            buffer_set_mode(3);
             break;
 
         case 4: // Select Line
@@ -224,15 +227,25 @@ void create_menu()
 }
 
 
-
-void select_point(float px, float py, float mx, float my, float t)
+void select_point(int px, int py, int mx, int my, int t)
 {
     if(mx <= px + t && mx >= px - t)
     {
-        if(my <= py + t && my >= py - t){
-            printf("Ponto selecionado");
+        if(my <= py + t && my >= py - t)
+            {
+            printf("Ponto selecionado!\n");
         }
     }else{
-        printf("nenhum ponto selecionado!");
+        printf("Nenhum ponto selecionado!\n");
     }
+}
+
+void select_line(int px, int py, int mx, int my, int t)
+{
+
+}
+
+void select_polygon()
+{
+
 }
