@@ -10,7 +10,6 @@ typedef struct {
     int mode;
     int select_toggle;
     int is_next_line;
-    int is_next_polygon;
 
     Point_Figure mouse_down_position;
     Point_Figure mouse_up_position;
@@ -47,7 +46,7 @@ void buffer_clear_line_temp();
 
 void buffer_add_line(Point_Figure start, Point_Figure end);
 
-void buffer_add_polygon_temp(Point_Figure point);
+void buffer_add_polygon_temp();
 
 void buffer_clear_polygon_temp();
 
@@ -55,7 +54,11 @@ void buffer_add_polygon(PointList vertex_list);
 
 void buffer_draw_points();
 
+void buffer_draw_temp_line();
+
 void buffer_draw_lines();
+
+void buffer_draw_temp_polygons();
 
 void buffer_draw_polygons();
 

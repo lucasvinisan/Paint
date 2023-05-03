@@ -34,26 +34,7 @@ void preview_line(Line_Figure line)
 
 void mouse_motion(int x, int y)
 {
-    int mode = buffer_get_mode();
-    Point_Figure click_down = buffer_get_mouse_down();
-    Point_Figure click_up = buffer_get_mouse_up();
-    Line_Figure line = {click_down, click_up};
 
-    switch(mode)
-    {
-        case 1:
-//            if(!isPointsEquals(click_down, click_up))
-//            {
-//                preview_line(line);
-//            }
-            break;
-
-        case 2:
-            break;
-
-        default:
-            break;
-    }
 }
 
 void mouse(int button, int state, int x, int y)
@@ -80,6 +61,10 @@ void mouse(int button, int state, int x, int y)
             case 1:
                 buffer_add_line_temp(click_down);
                 break;
+            case 2:
+                buffer_add_polygon_temp();
+                break;
+
             case 3:
                 px = click_down.x;
                 py = click_down.y;

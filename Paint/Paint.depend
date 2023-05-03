@@ -74,14 +74,14 @@
 	<gl/glut.h>
 	"buffer.h"
 
-1682966839 source:c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\buffer.c
+1683156333 source:c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\buffer.c
 	<stdlib.h>
 	<stdio.h>
 	<gl/glut.h>
 	"buffer.h"
 	"function.h"
 
-1682954103 c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\buffer.h
+1683156333 c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\buffer.h
 	"point.h"
 	"line.h"
 	"polygon.h"
@@ -108,7 +108,7 @@
 	<stdlib.h>
 	"line.h"
 
-1682954103 source:c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\main.c
+1683156333 source:c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -122,4 +122,17 @@
 1682954103 source:c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\polygon.c
 	<stdlib.h>
 	"polygon.h"
+
+1683156333 source:c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\transform.c
+	<stdlib.h>
+	<math.h>
+	"transform.h"
+
+1683156333 c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\transform.h
+	"line.h"
+	"point.h"
+	"polygon.h"
+	<stdlib.h>
+	<math.h>
+	"transform.h"
 
