@@ -11,7 +11,7 @@ int buffer_initialized = 0;
 void buffer_init() {
     if(!buffer_initialized) {
         buffer_initialized = 1;
-        buffer.mode = 2;
+        buffer.mode = 0;
         buffer.select_toggle = 0;
         buffer.is_next_line = 0;
 
@@ -102,8 +102,9 @@ void buffer_add_polygon_temp() {
 void buffer_add_polygon(PointList vertex_list) {
     Polygon_Figure polygon = {vertex_list};
     addPolygonList(buffer.polygons_buffer, polygon);
-    printf("Polygon added to polygon buffer\n");
-    foreachPolygonList(buffer.polygons_buffer, print_polygon);printf("\n");
+    printf("Polygon ");
+    foreachPolygonList(buffer.polygons_buffer, print_polygon);
+    printf(" added to polygons buffer\n");
 }
 
 void buffer_draw_points() {
@@ -121,8 +122,7 @@ void buffer_draw_points() {
     glEnd();
 }
 
-void buffer_draw_temp_line()
-{
+void buffer_draw_temp_line() {
     if(buffer_get_mode() == 1)
     {
         Point_Figure point = buffer_get_mouse_down();
