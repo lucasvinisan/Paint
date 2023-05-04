@@ -206,8 +206,8 @@ int getPointList(PointList *list, int index, Point_Figure *copy) {
 }
 
 int updatePointList(PointList *list, int index, Point_Figure point) {
-    if(isNullOrEmptyLineList(list)) return -1;
-    if(index > lengthLineList(list) || index < 0) return -1;
+    if(isNullOrEmptyPointList(list)) return -1;
+    if(index > lengthPointList(list) || index < 0) return -1;
 
     PointLink *current = *list;
 

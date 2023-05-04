@@ -271,6 +271,7 @@ void buffer_rotate_polygon(float angle) {
         updatePolygonList(buffer.polygons_buffer, buffer.select_index, polygon);
     }
 }
+
 void buffer_translate_polygon() {
     Polygon_Figure polygon;
 
@@ -281,7 +282,7 @@ void buffer_translate_polygon() {
 }
 
 void buffer_remove_point() {
-     removePointList(buffer.points_buffer, buffer.select_index);
+    removePointList(buffer.points_buffer, buffer.select_index);
 }
 
 void buffer_remove_line() {

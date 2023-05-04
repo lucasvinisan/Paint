@@ -314,8 +314,8 @@ int getPolygonList(PolygonList *list, int index, Polygon_Figure *copy) {
 }
 
 int updatePolygonList(PolygonList *list, int index, Polygon_Figure polygon) {
-    if(isNullOrEmptyLineList(list)) return -1;
-    if(index > lengthLineList(list) || index < 0) return -1;
+    if(isNullOrEmptyPolygonList(list)) return -1;
+    if(index > lengthPolygonList(list) || index < 0) return -1;
 
     PolygonLink *current = *list;
 
