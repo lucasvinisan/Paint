@@ -25,54 +25,58 @@
 	<locale.h>
 	"function.h"
 
-1682948363 source:c:\users\kelthon\desktop\paint\paint\line.c
+1683159807 source:c:\users\kelthon\desktop\paint\paint\line.c
 	<stdlib.h>
 	"line.h"
+	"transform.h"
 
-1682948177 c:\users\kelthon\desktop\paint\paint\line.h
+1683159807 c:\users\kelthon\desktop\paint\paint\line.h
 	"point.h"
 
-1682948216 c:\users\kelthon\desktop\paint\paint\point.h
+1683160167 c:\users\kelthon\desktop\paint\paint\point.h
 
-1682948431 source:c:\users\kelthon\desktop\paint\paint\point.c
+1683160167 source:c:\users\kelthon\desktop\paint\paint\point.c
 	<stdlib.h>
 	"point.h"
+	"transform.h"
 
-1682948479 source:c:\users\kelthon\desktop\paint\paint\polygon.c
+1683165620 source:c:\users\kelthon\desktop\paint\paint\polygon.c
 	<stdlib.h>
 	"polygon.h"
+	"transform.h"
 
-1682948286 c:\users\kelthon\desktop\paint\paint\polygon.h
+1683162226 c:\users\kelthon\desktop\paint\paint\polygon.h
 	"point.h"
 
-1682950663 source:c:\users\kelthon\desktop\paint\paint\buffer.c
+1683165977 source:c:\users\kelthon\desktop\paint\paint\buffer.c
 	<stdlib.h>
 	<stdio.h>
 	<gl/glut.h>
 	"buffer.h"
 	"function.h"
 
-1682950698 c:\users\kelthon\desktop\paint\paint\buffer.h
+1683165147 c:\users\kelthon\desktop\paint\paint\buffer.h
 	"point.h"
 	"line.h"
 	"polygon.h"
 	"function.h"
 
-1682948485 c:\users\kelthon\desktop\paint\paint\function.h
+1683155058 c:\users\kelthon\desktop\paint\paint\function.h
 
-1682950361 source:c:\users\kelthon\desktop\paint\paint\function.c
+1683166489 source:c:\users\kelthon\desktop\paint\paint\function.c
 	<stdlib.h>
 	<stdio.h>
 	<gl/glut.h>
 	"function.h"
 	"buffer.h"
 
-1682948062 source:c:\users\kelthon\desktop\paint\paint\main.c
+1683166551 source:c:\users\kelthon\desktop\paint\paint\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
 	<gl/glut.h>
 	"buffer.h"
+	"transform.h"
 
 1683156333 source:c:\users\lucas\onedrive\Área de trabalho\paint final\paint\paint\buffer.c
 	<stdlib.h>
@@ -132,6 +136,19 @@
 	"line.h"
 	"point.h"
 	"polygon.h"
+	<stdlib.h>
+	<math.h>
+	"transform.h"
+
+1683132269 c:\users\kelthon\desktop\paint\paint\transform.h
+	"line.h"
+	"point.h"
+	"polygon.h"
+	<stdlib.h>
+	<math.h>
+	"transform.h"
+
+1683132269 source:c:\users\kelthon\desktop\paint\paint\transform.c
 	<stdlib.h>
 	<math.h>
 	"transform.h"

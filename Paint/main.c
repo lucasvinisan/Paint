@@ -36,8 +36,6 @@ int main(int argc, char** argv)
     glutInitWindowPosition(WINDOW_POSITION_X, WINDOW_POSITION_Y);
     glutCreateWindow("Paint by L&K");
     glutMouseFunc(mouse);
-    glutKeyboardFunc(keyboard);
-    glutSpecialFunc(keyboardSpecial);
     create_menu();
 
     init();
