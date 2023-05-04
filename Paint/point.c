@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "point.h"
+#include "transform.h"
 
 typedef struct PointLink {
     struct PointLink *next;
@@ -13,6 +14,14 @@ void print_point(Point_Figure point) {
 int isPointsEquals(Point_Figure a, Point_Figure b) {
     if(a.x == b.x && a.y == b.y) return 1;
     return 0;
+}
+
+void translate_point(Point_Figure *point, Point_Figure offset) {
+    float * translate = getTranslateMatrix(offset);
+    multiplyByPointMatrix2D(translate, point);
+
+    free(translate);
+    translate = NULL;
 }
 
 Point_Figure get_point_copy(Point_Figure point) {
@@ -193,6 +202,22 @@ int getPointList(PointList *list, int index, Point_Figure *copy) {
     if(index > lengthPointList(list) || index < 0) return -1;
 
     copyDataPointList(list, index, copy);
+    return 1;
+}
+
+int updatePointList(PointList *list, int index, Point_Figure point) {
+    if(isNullOrEmptyLineList(list)) return -1;
+    if(index > lengthLineList(list) || index < 0) return -1;
+
+    PointLink *current = *list;
+
+    for(int i = 0; i < index && current != NULL; i++)
+        current = current->next;
+
+    if(current != NULL) {
+        current->point = point;
+    }
+
     return 1;
 }
 

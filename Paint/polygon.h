@@ -14,6 +14,11 @@ typedef void(* PolygonCallback)(Polygon_Figure polygon);
 void print_polygon(Polygon_Figure polygon);
 int isPolygonEquals(Polygon_Figure a, Polygon_Figure b);
 Polygon_Figure get_polygon(PointList *vertex_list);
+Point_Figure polygon_get_centroid(Polygon_Figure polygon);
+
+void rotate_polygon(Polygon_Figure *polygon, float angle);
+void translate_polygon(Polygon_Figure *polygon, Point_Figure offset);
+void scale_polygon(Polygon_Figure *polygon, Point_Figure factor);
 
 PolygonList *newPolygonList();
 PolygonList *copyPolygonList(PolygonList *list);
@@ -26,6 +31,7 @@ int addPolygonList(PolygonList *list, Polygon_Figure polygon);
 int removePolygonList(PolygonList *list, int index);
 int lengthPolygonList(PolygonList *list);
 int getPolygonList(PolygonList *list, int index, Polygon_Figure *copy);
+int updatePolygonList(PolygonList *list, int index, Polygon_Figure polygon);
 int indexOfPolygonList(PolygonList *list, Polygon_Figure polygon);
 void foreachPolygonList(PolygonList *list, PolygonCallback func);
 

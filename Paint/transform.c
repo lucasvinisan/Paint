@@ -190,3 +190,37 @@ void multiplyByPointMatrix2D(float * matrix, Point_Figure *point) {
     free(point2D);
     point2D = NULL;
 }
+
+float * getTranslateMatrix(Point_Figure offset) {
+    float * translate = newMatrix2D();
+    toIdentityMatrix2D(translate);
+    translate[2] = offset.x;
+    translate[5] = offset.y;
+
+    return translate;
+}
+
+float * getRotateMatrix(float angle) {
+    float * rotate = newMatrix2D();
+    toIdentityMatrix2D(rotate);
+
+    float cosTheta = cosf(angle);
+    float sinTheta = sinf(angle);
+
+    rotate[0] = cosTheta;
+    rotate[1] = sinTheta;
+    rotate[3] = -sinTheta;
+    rotate[4] = cosTheta;
+
+    return rotate;
+}
+
+float * getScaleMatrix(Point_Figure factor) {
+    float * scale = newMatrix2D();
+    toIdentityMatrix2D(scale);
+
+    scale[0] = factor.x;
+    scale[4] = factor.y;
+
+    return scale;
+}

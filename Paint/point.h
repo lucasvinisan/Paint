@@ -12,6 +12,8 @@ typedef void(* PointCallback)(Point_Figure element);
 void print_point(Point_Figure point);
 int isPointsEquals(Point_Figure a, Point_Figure b);
 
+void translate_point(Point_Figure *point, Point_Figure offset);
+
 PointList *newPointList();
 PointList *copyPointList(PointList *list);
 void clearPointList(PointList *list);
@@ -24,6 +26,7 @@ int reverseIndexPointList(PointList *list, int index) ;
 int removePointList(PointList *list, int index);
 int lengthPointList(PointList *list);
 int getPointList(PointList *list, int index, Point_Figure *copy);
+int updatePointList(PointList *list, int index, Point_Figure point);
 int indexOfPointList(PointList *list, Point_Figure point);
 void foreachPointList(PointList *list, PointCallback func);
 

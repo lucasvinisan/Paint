@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "polygon.h"
+#include "transform.h"
 
 typedef struct PolygonLink {
     struct PointLink *next;
@@ -51,8 +52,86 @@ Polygon_Figure get_polygon_copy(Polygon_Figure polygon) {
     return copy;
 }
 
-PolygonList *newPolygonList()
-{
+Point_Figure polygon_get_centroid(Polygon_Figure polygon) {
+    int i = 0;
+    Point_Figure centroid = {0, 0}, aux;
+
+    while(i < lengthPointList(polygon.vertex_list)) {
+        getPointList(polygon.vertex_list, i, &aux);
+        centroid.x += aux.x;
+        centroid.y += aux.y;
+        i++;
+    }
+
+    centroid.x /= i;
+    centroid.y /= i;
+
+    return centroid;
+}
+
+void rotate_polygon(Polygon_Figure *polygon, float angle) {
+    Point_Figure center = polygon_get_centroid(*polygon);
+    Point_Figure foward = {-center.x, -center.y};
+    float * Tfoward = getTranslateMatrix(foward);
+    float * rotate = getRotateMatrix(angle);
+    float * Treturn = getTranslateMatrix(center);
+
+    multiplyMatrix2D(Treturn, rotate);
+    multiplyMatrix2D(Treturn, Tfoward);
+
+    for(int i = 0; i < lengthPointList(polygon->vertex_list); i++)
+    {
+        multiplyByPointMatrix2D(Treturn, &polygon->vertex_list[i]);
+    }
+
+    free(Tfoward);
+    Tfoward = NULL;
+
+    free(rotate);
+    rotate = NULL;
+
+    free(Treturn);
+    Treturn = NULL;
+}
+
+void translate_polygon(Polygon_Figure *polygon, Point_Figure offset) {
+    float * translate = getTranslateMatrix(offset);
+
+    for(int i = 0; i < lengthPointList(polygon->vertex_list); i++)
+    {
+        multiplyByPointMatrix2D(translate, &polygon->vertex_list[i]);
+    }
+
+    free(translate);
+    translate = NULL;
+}
+
+void scale_polygon(Polygon_Figure *polygon, Point_Figure factor) {
+    Point_Figure center = polygon_get_centroid(*polygon);
+    Point_Figure foward = {-center.x, -center.y};
+    float * Tfoward = getTranslateMatrix(foward);
+    float * scale = getScaleMatrix(factor);
+    float * Treturn = getTranslateMatrix(center);
+
+    multiplyMatrix2D(Treturn, scale);
+    multiplyMatrix2D(Treturn, Tfoward);
+
+    for(int i = 0; i < lengthPointList(polygon->vertex_list); i++)
+    {
+        multiplyByPointMatrix2D(Treturn, &polygon->vertex_list[i]);
+    }
+
+    free(Tfoward);
+    Tfoward = NULL;
+
+    free(scale);
+    scale = NULL;
+
+    free(Treturn);
+    Treturn = NULL;
+}
+
+PolygonList *newPolygonList() {
     PolygonList *list = (PolygonList *) malloc(sizeof(PolygonList *));
 
     if(*list != NULL)
@@ -74,8 +153,7 @@ PolygonList *copyPolygonList(PolygonList *list) {
     return copy;
 }
 
-void clearPolygonList(PolygonList *list)
-{
+void clearPolygonList(PolygonList *list) {
     if(!isEmptyPolygonList(list)) {
         PolygonLink *current = *list, *aux = NULL;
 
@@ -92,8 +170,7 @@ void clearPolygonList(PolygonList *list)
     *list = NULL;
 }
 
-void deletePolygonList(PolygonList *list)
-{
+void deletePolygonList(PolygonList *list) {
     clearPolygonList(list);
     free(list);
     list = NULL;
@@ -233,6 +310,22 @@ int getPolygonList(PolygonList *list, int index, Polygon_Figure *copy) {
     if(index > lengthPolygonList(list)) return -1;
 
     copyDataPolygonList(list, index, copy);
+    return 1;
+}
+
+int updatePolygonList(PolygonList *list, int index, Polygon_Figure polygon) {
+    if(isNullOrEmptyLineList(list)) return -1;
+    if(index > lengthLineList(list) || index < 0) return -1;
+
+    PolygonLink *current = *list;
+
+    for(int i = 0; i < index && current != NULL; i++)
+        current = current->next;
+
+    if(current != NULL) {
+        current->polygon = polygon;
+    }
+
     return 1;
 }
 

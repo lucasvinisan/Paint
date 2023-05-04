@@ -4,6 +4,7 @@
 #include <gl/glut.h>
 
 #include "buffer.h"
+#include "transform.h"
 
 #define WINDOW_WIDTH 600.0
 #define WINDOW_HEIGTH 600.0
@@ -35,6 +36,8 @@ int main(int argc, char** argv)
     glutInitWindowPosition(WINDOW_POSITION_X, WINDOW_POSITION_Y);
     glutCreateWindow("Paint by L&K");
     glutMouseFunc(mouse);
+    glutKeyboardFunc(keyboard);
+    glutSpecialFunc(keyboardSpecial);
     create_menu();
 
     init();

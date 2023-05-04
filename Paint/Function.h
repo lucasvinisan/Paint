@@ -1,6 +1,8 @@
 #ifndef FUNCTION_H_INCLUDED
 #define FUNCTION_H_INCLUDED
 
+void keyboardSpecial(int key, int x, int y);
+
 void keyboard(unsigned char key, int x, int y);
 
 void mouseMotion(int x, int y);

@@ -12,7 +12,7 @@ void buffer_init() {
     if(!buffer_initialized) {
         buffer_initialized = 1;
         buffer.mode = 0;
-        buffer.select_toggle = 0;
+        buffer.select_index = 0;
         buffer.is_next_line = 0;
 
         buffer.mouse_down_position.x = 0;
@@ -214,4 +214,80 @@ void buffer_draw_all() {
     buffer_draw_temp_line();
     buffer_draw_points();
     buffer_draw_lines();
+}
+
+void buffer_translate_point() {
+    Point_Figure point;
+
+    if(getLineList(buffer.points_buffer, buffer.select_index, &point) != -1) {
+
+        translate_point(&point, buffer_get_mouse_down());
+
+        updatePointList(buffer.lines_buffer, buffer.select_index, point);
+    }
+}
+
+void buffer_scale_line(Point_Figure factor) {
+    Line_Figure line;
+
+    if(getLineList(buffer.lines_buffer, buffer.select_index, &line) != -1) {
+        scale_line(&line, factor);
+        updateLineList(buffer.lines_buffer, buffer.select_index, line);
+    }
+}
+
+void buffer_rotate_line(float angle) {
+    Line_Figure line;
+
+    if(getLineList(buffer.lines_buffer, buffer.select_index, &line) != -1) {
+        rotate_line(&line, angle);
+        updateLineList(buffer.lines_buffer, buffer.select_index, line);
+    }
+}
+
+void buffer_translate_line() {
+    Line_Figure line;
+
+    if(getLineList(buffer.lines_buffer, buffer.select_index, &line) != -1) {
+        translate_line(&line, buffer_get_mouse_down());
+        updateLineList(buffer.lines_buffer, buffer.select_index, line);
+    }
+}
+
+void buffer_scale_polygon(Point_Figure factor) {
+    Polygon_Figure polygon;
+
+    if(getPolygonList(buffer.polygons_buffer, buffer.select_index, &polygon) != -1) {
+        scale_polygon(&polygon, factor);
+        updatePolygonList(buffer.polygons_buffer, buffer.select_index, polygon);
+    }
+}
+
+void buffer_rotate_polygon(float angle) {
+    Polygon_Figure polygon;
+
+    if(getPolygonList(buffer.polygons_buffer, buffer.select_index, &polygon) != -1) {
+        rotate_polygon(&polygon, angle);
+        updatePolygonList(buffer.polygons_buffer, buffer.select_index, polygon);
+    }
+}
+void buffer_translate_polygon() {
+    Polygon_Figure polygon;
+
+    if(getPolygonList(buffer.polygons_buffer, buffer.select_index, &polygon) != -1) {
+        translate_polygon(&polygon, buffer_get_mouse_down());
+        updatePolygonList(buffer.polygons_buffer, buffer.select_index, polygon);
+    }
+}
+
+void buffer_remove_point() {
+     removePointList(buffer.points_buffer, buffer.select_index);
+}
+
+void buffer_remove_line() {
+    removeLineList(buffer.lines_buffer, buffer.select_index);
+}
+
+void buffer_remove_polygon() {
+    removePolygonList(buffer.polygons_buffer, buffer.select_index);
 }

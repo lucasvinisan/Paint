@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "line.h"
+#include "transform.h"
 
 typedef struct LineLink {
     struct LineLink *next;
@@ -24,6 +25,73 @@ Line_Figure get_line_copy(Line_Figure line) {
     Point_Figure end_copy = {line.end.x, line.end.y};
     Line_Figure copy = {start_copy, end_copy};
     return copy;
+}
+
+Point_Figure getCentroidLine(Line_Figure line) {
+    Point_Figure centroid;
+
+    centroid.x = (line.start.x + line.end.x) / 2;
+    centroid.y = (line.start.y + line.end.y) / 2;
+
+    return centroid;
+}
+
+void scale_line(Line_Figure *line, Point_Figure factor) {
+    Point_Figure center = getCentroidLine(*line);
+    Point_Figure foward = {-center.x, -center.y};
+
+    float * Tfoward = getTranslateMatrix(foward);
+    float * scale = getScaleMatrix(factor);
+    float * Treturn = getTranslateMatrix(center);
+
+    multiplyMatrix2D(Treturn, scale);
+    multiplyMatrix2D(Treturn, Tfoward);
+
+    multiplyByPointMatrix2D(Treturn, &line->start);
+    multiplyByPointMatrix2D(Treturn, &line->end);
+
+    free(Tfoward);
+    Tfoward = NULL;
+
+    free(scale);
+    scale = NULL;
+
+    free(Treturn);
+    Treturn = NULL;
+}
+
+void rotate_line(Line_Figure *line, float angle) {
+    Point_Figure center = getCentroidLine(*line);
+    Point_Figure foward = {-center.x, -center.y};
+
+    float * Tfoward = getTranslateMatrix(foward);
+    float * rotate = getRotateMatrix(angle);
+    float * Treturn = getTranslateMatrix(center);
+
+    multiplyMatrix2D(Treturn, rotate);
+    multiplyMatrix2D(Treturn, Tfoward);
+
+    multiplyByPointMatrix2D(Treturn, &line->start);
+    multiplyByPointMatrix2D(Treturn, &line->end);
+
+    free(Tfoward);
+    Tfoward = NULL;
+
+    free(rotate);
+    rotate = NULL;
+
+    free(Treturn);
+    Treturn = NULL;
+}
+
+void translate_line(Line_Figure *line, Point_Figure offset) {
+    float * foward = getTranslateMatrix(offset);
+
+    multiplyByPointMatrix2D(foward, &line->start);
+    multiplyByPointMatrix2D(foward, &line->end);
+
+    free(foward);
+    foward = NULL;
 }
 
 LineList *newLineList() {
@@ -200,6 +268,22 @@ int getLineList(LineList *list, int index, Line_Figure *copy) {
     if(index > lengthLineList(list) || index < 0) return -1;
 
     copyDataLineList(list, index, copy);
+    return 1;
+}
+
+int updateLineList(LineList *list, int index, Line_Figure line) {
+    if(isNullOrEmptyLineList(list)) return -1;
+    if(index > lengthLineList(list) || index < 0) return -1;
+
+    LineLink *current = *list;
+
+    for(int i = 0; i < index && current != NULL; i++)
+        current = current->next;
+
+    if(current != NULL) {
+        current->line = line;
+    }
+
     return 1;
 }
 

@@ -21,5 +21,8 @@ void printMatrix2D(float * matrix);
 void printPoint2D(float * point);
 void multiplyMatrix2D(float * M, float * N);
 void multiplyByPointMatrix2D(float * matrix, Point_Figure *point);
+float * getTranslateMatrix(Point_Figure offset);
+float * getRotateMatrix(float angle);
+float * getScaleMatrix(Point_Figure scale);
 
 #endif // TRANSFORM_H_INCLUDED
