@@ -5,31 +5,16 @@
 #include "function.h"
 #include "buffer.h"
 
-void keyboardSpecial(int key, int x, int y) {
-    int mode = buffer_get_mode();
+//Opcodes line
 
-}
+typedef struct {
+    unsigned char all;
+    unsigned char left;
+    unsigned char right;
+    unsigned char bottom;
+    unsigned char top;
+}Outcode;
 
-void keyboard(unsigned char key, int x, int y) {
-    Point_Figure factor = {1.5, 1.5};
-
-    switch(key) {
-        case 'q':
-            buffer_scale_line(factor);
-            printf("'q' key pressed\n");
-            break;
-
-        case 'e':
-            factor.x = -1.5;
-            factor.y = -1.5;
-            buffer_scale_line(factor);
-            printf("'e' key pressed\n");
-            break;
-
-        default:
-            break;
-    }
-}
 
 void mouse(int button, int state, int x, int y) {
     int mode = buffer_get_mode();
@@ -63,7 +48,12 @@ void mouse(int button, int state, int x, int y) {
                     py = click_down.y;
                     select_point(px, py, x, y, t);
                     break;
+                case 4:
 
+                    selectLine(line.start.x, line.end.x, line.start.y, line.end.y,
+                            3, 2, 3, 2);
+                            printf("%d %d %d %d \n", click_down.x, line.end.x, line.start.y, line.end.y);
+                    break;
                 case 6:
                     factor.x = 1 / factor.x;
                     factor.y = 1 / factor.y;
@@ -279,22 +269,132 @@ void create_menu() {
     glutAttachMenu(GLUT_RIGHT_BUTTON);
 }
 
-void select_point(int px, int py, int mx, int my, int t) {
+
+int select_point(int px, int py, int mx, int my, int t)
+{
     if(mx <= px + t && mx >= px - t)
     {
         if(my <= py + t && my >= py - t)
             {
             printf("Ponto selecionado!\n");
+            return 1;
         }
-    }else{
-        printf("Nenhum ponto selecionado!\n");
     }
 }
 
-void select_line(int px, int py, int mx, int my, int t) {
 
+Outcode generateCode(int x, int y, int xmin, int xmax, int ymin, int ymax)
+{
+    Outcode code;
+    code.top = 0;
+    code.all = 0;
+    code.bottom = 0;
+    code.right = 0;
+    code.left = 0;
+
+    if(y > ymax){
+        code.top = 1;
+        code.all+=8;
+    }else if(y < ymin){
+        code.bottom = 2;
+        code.all += 4;
+    }
+    if(x > xmax){
+        code.right = 1;
+        code.all += 2;
+    }else if(x < xmin){
+        code.left = 1;
+        code.all += 1;
+    }
+    return code;
 }
 
-void select_polygon() {
+void selectLine(int x0, int x1, int y0, int y1, int xmin, int xmax, int ymin, int ymax)
+{
+    Outcode outcode0, outcode1, OutcodeOut, generateCode();
+    int accept = 0, done = 0;
+    int x_position, y_position;
 
+    outcode0 = generateCode(x0, y0, xmin, xmax, ymin, ymax);
+    outcode1 = generateCode(x0, y0, xmin, xmax, ymin, ymax);
+
+
+    do{
+        if(outcode0.all == 0 && outcode1.all == 0)
+        {
+            done = 1, accept = 1;
+        }else if((outcode0.all & outcode1.all) != 0){
+            done = 1;
+        }else{
+            if(OutcodeOut.all != 0){
+                OutcodeOut = outcode0;
+                printf("Linha selecionada!");
+            }else{
+                OutcodeOut = outcode1;
+            }
+            if(OutcodeOut.top){
+                x_position = x0 + (x1 - x0) * (ymax - y0) / (y1 - y0);
+                y_position = ymax;
+            }
+            else if(OutcodeOut.bottom){
+
+                x_position = x0 + (x1 - x0) * (ymin - y0) / (y1 - y0);
+                y_position = ymin;
+            }
+            else if(OutcodeOut.right){
+                y_position = x0 + (x1 - x0) * (xmax - y0) / (y1 - y0);
+                x_position = xmax;
+            }
+            else if(OutcodeOut.left){
+                y_position = x0 + (x1 - x0) * (xmin - y0) / (y1 - y0);
+                x_position = xmin;
+            }
+
+            if(OutcodeOut.all == outcode0.all){
+                x0 = x_position;
+                y0 = y_position;
+                outcode0 = generateCode(x0, y0, xmin, xmax, ymin, ymax);
+
+            }else{
+                x1 = x_position;
+                y1 = y_position;
+                outcode1 = generateCode(x1, y1, xmin, xmax, ymin, ymax);
+            }
+        }
+    }while(!done);
+}
+//X e y coordenadas dos pontos
+
+void select_polygon(POINT p1, POINT p2, int x, int y)
+{
+    if(p1.y > y && p2.y > y){
+        printf("N�o insercepta!");
+        return;
+    }
+    if(p1.y < y && p2.y < y){
+       printf("N�o insercepta!");
+       return;
+
+    }
+    if(p1.x < x && p2.x < x){
+        printf("N�o insercepta!");
+        return;
+
+    }
+    if(p1.y == p2.y){
+        printf("N�o insercepta!");
+        return;
+
+    }
+    if((p1.x > x && p2.x > x) && ((p1.y > y && p2.y < y)) || ((p1.y < y && p2.y > y))){
+        printf("N�o insercepta!");
+        return;
+    }
+
+    int x1 = p1.x + (y - p1.y)*(p2.x - p1.x) /(p2.y - p1.y);
+
+    if(x1 > x){
+        printf("Ponto interceptado! insercepta!");
+        return;
+    }
 }

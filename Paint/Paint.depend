@@ -1,0 +1,138 @@
+# depslib dependency file v1.0
+1682568958 source:c:\users\lucas\onedrive\햞ea de trabalho\paint\paint\function.c
+	<stdio.h>
+	<GL/glut.h>
+	"function.h"
+
+1682568958 c:\users\lucas\onedrive\햞ea de trabalho\paint\paint\function.h
+
+1682568958 source:c:\users\lucas\onedrive\햞ea de trabalho\paint\paint\main.c
+	<windows.h>
+	<GL/glut.h>
+	<locale.h>
+	"function.h"
+
+1682598938 source:c:\users\lucas\onedrive\햞ea de trabalho\paint\paint\paint\function.c
+	<stdio.h>
+	<GL/glut.h>
+	"function.h"
+
+1682597608 c:\users\lucas\onedrive\햞ea de trabalho\paint\paint\paint\function.h
+
+1682568958 source:c:\users\lucas\onedrive\햞ea de trabalho\paint\paint\paint\main.c
+	<windows.h>
+	<GL/glut.h>
+	<locale.h>
+	"function.h"
+
+1682948363 source:c:\users\kelthon\desktop\paint\paint\line.c
+	<stdlib.h>
+	"line.h"
+
+1682948177 c:\users\kelthon\desktop\paint\paint\line.h
+	"point.h"
+
+1682948216 c:\users\kelthon\desktop\paint\paint\point.h
+
+1682948431 source:c:\users\kelthon\desktop\paint\paint\point.c
+	<stdlib.h>
+	"point.h"
+
+1682948479 source:c:\users\kelthon\desktop\paint\paint\polygon.c
+	<stdlib.h>
+	"polygon.h"
+
+1682948286 c:\users\kelthon\desktop\paint\paint\polygon.h
+	"point.h"
+
+1682950663 source:c:\users\kelthon\desktop\paint\paint\buffer.c
+	<stdlib.h>
+	<stdio.h>
+	<gl/glut.h>
+	"buffer.h"
+	"function.h"
+
+1682950698 c:\users\kelthon\desktop\paint\paint\buffer.h
+	"point.h"
+	"line.h"
+	"polygon.h"
+	"function.h"
+
+1682948485 c:\users\kelthon\desktop\paint\paint\function.h
+
+1682950361 source:c:\users\kelthon\desktop\paint\paint\function.c
+	<stdlib.h>
+	<stdio.h>
+	<gl/glut.h>
+	"function.h"
+	"buffer.h"
+
+1682948062 source:c:\users\kelthon\desktop\paint\paint\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	<gl/glut.h>
+	"buffer.h"
+
+1683156333 source:c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\buffer.c
+	<stdlib.h>
+	<stdio.h>
+	<gl/glut.h>
+	"buffer.h"
+	"function.h"
+
+1683156333 c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\buffer.h
+	"point.h"
+	"line.h"
+	"polygon.h"
+	"function.h"
+
+1682954103 c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\point.h
+
+1682954103 c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\line.h
+	"point.h"
+
+1682954103 c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\polygon.h
+	"point.h"
+
+1682954103 c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\function.h
+
+1683156084 source:c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\function.c
+	<stdlib.h>
+	<stdio.h>
+	<gl/glut.h>
+	"function.h"
+	"buffer.h"
+
+1682954103 source:c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\line.c
+	<stdlib.h>
+	"line.h"
+
+1683156333 source:c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	<gl/glut.h>
+	"buffer.h"
+
+1682954103 source:c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\point.c
+	<stdlib.h>
+	"point.h"
+
+1682954103 source:c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\polygon.c
+	<stdlib.h>
+	"polygon.h"
+
+1683156333 source:c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\transform.c
+	<stdlib.h>
+	<math.h>
+	"transform.h"
+
+1683156333 c:\users\lucas\onedrive\햞ea de trabalho\paint final\paint\paint\transform.h
+	"line.h"
+	"point.h"
+	"polygon.h"
+	<stdlib.h>
+	<math.h>
+	"transform.h"
+
