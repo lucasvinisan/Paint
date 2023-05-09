@@ -85,13 +85,21 @@ void rotate_line(Line_Figure *line, float angle) {
 }
 
 void translate_line(Line_Figure *line, Point_Figure offset) {
-    float * foward = getTranslateMatrix(offset);
+    Point_Figure cpy;
+    Point_Figure center = getCentroidLine(*line);
+    Point_Figure foward = {-center.x, -center.y};
+    float * Tfoward = getTranslateMatrix(foward);
+    float * translate = getTranslateMatrix(offset);
 
-    multiplyByPointMatrix2D(foward, &line->start);
-    multiplyByPointMatrix2D(foward, &line->end);
+    multiplyMatrix2D(translate, Tfoward);
 
-    free(foward);
-    foward = NULL;
+    multiplyByPointMatrix2D(translate, &line->start);
+    multiplyByPointMatrix2D(translate, &line->end);
+
+    free(Tfoward);
+    Tfoward = NULL;
+    free(translate);
+    translate = NULL;
 }
 
 LineList *newLineList() {

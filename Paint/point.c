@@ -17,7 +17,11 @@ int isPointsEquals(Point_Figure a, Point_Figure b) {
 }
 
 void translate_point(Point_Figure *point, Point_Figure offset) {
+    Point_Figure foward = { -point->x, -point->y };
+    float * Tfoward = getTranslateMatrix(foward);
     float * translate = getTranslateMatrix(offset);
+
+    multiplyMatrix2D(translate, Tfoward);
     multiplyByPointMatrix2D(translate, point);
 
     free(translate);

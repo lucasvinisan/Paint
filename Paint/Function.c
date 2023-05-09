@@ -75,19 +75,19 @@ void mouse(int button, int state, int x, int y) {
                     break;
 
                 case 10:
-                    buffer_rotate_line(15);
+                    buffer_rotate_line(5);
                     break;
 
                 case 11:
-                    buffer_rotate_line(-15);
+                    buffer_rotate_line(-5);
                     break;
 
                 case 12:
-                    buffer_rotate_polygon(15);
+                    buffer_rotate_polygon(5);
                     break;
 
                 case 13:
-                    buffer_rotate_polygon(-15);
+                    buffer_rotate_polygon(-5);
                     break;
 
                 case 14:
@@ -269,19 +269,19 @@ void create_menu() {
     glutAttachMenu(GLUT_RIGHT_BUTTON);
 }
 
-
 int select_point(int px, int py, int mx, int my, int t)
 {
     if(mx <= px + t && mx >= px - t)
     {
         if(my <= py + t && my >= py - t)
-            {
-            printf("Ponto selecionado!\n");
+        {
+//            Point_Figure point = {px, py};
+//            int index = indexOfPointList(buffer.points_buffer, point);
+//            buffer.select_index = index;
             return 1;
         }
     }
 }
-
 
 Outcode generateCode(int x, int y, int xmin, int xmax, int ymin, int ymax)
 {
@@ -377,7 +377,7 @@ void select_polygon(POINT p1, POINT p2, int x, int y)
 
     }
     if(p1.x < x && p2.x < x){
-        printf("N�o insercepta!");
+        printf("Não insercepta!");
         return;
 
     }

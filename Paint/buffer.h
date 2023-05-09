@@ -24,7 +24,7 @@ typedef struct {
 
 void buffer_init();
 
-Buffer get_buffer();
+Buffer *buffer_get();
 
 void buffer_set_mode(int mode);
 

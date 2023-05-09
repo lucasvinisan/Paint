@@ -35,12 +35,12 @@
 
 1683160167 c:\users\kelthon\desktop\paint\paint\point.h
 
-1683167670 source:c:\users\kelthon\desktop\paint\paint\point.c
+1683649161 source:c:\users\kelthon\desktop\paint\paint\point.c
 	<stdlib.h>
 	"point.h"
 	"transform.h"
 
-1683167603 source:c:\users\kelthon\desktop\paint\paint\polygon.c
+1683648998 source:c:\users\kelthon\desktop\paint\paint\polygon.c
 	<stdlib.h>
 	"polygon.h"
 	"transform.h"
@@ -48,14 +48,14 @@
 1683162226 c:\users\kelthon\desktop\paint\paint\polygon.h
 	"point.h"
 
-1683167603 source:c:\users\kelthon\desktop\paint\paint\buffer.c
+1683651197 source:c:\users\kelthon\desktop\paint\paint\buffer.c
 	<stdlib.h>
 	<stdio.h>
 	<gl/glut.h>
 	"buffer.h"
 	"function.h"
 
-1683165147 c:\users\kelthon\desktop\paint\paint\buffer.h
+1683651197 c:\users\kelthon\desktop\paint\paint\buffer.h
 	"point.h"
 	"line.h"
 	"polygon.h"
@@ -63,7 +63,7 @@
 
 1683155058 c:\users\kelthon\desktop\paint\paint\function.h
 
-1683166489 source:c:\users\kelthon\desktop\paint\paint\function.c
+1683651242 source:c:\users\kelthon\desktop\paint\paint\function.c
 	<stdlib.h>
 	<stdio.h>
 	<gl/glut.h>

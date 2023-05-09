@@ -70,18 +70,22 @@ Point_Figure polygon_get_centroid(Polygon_Figure polygon) {
 }
 
 void rotate_polygon(Polygon_Figure *polygon, float angle) {
+    Point_Figure cpy;
     Point_Figure center = polygon_get_centroid(*polygon);
     Point_Figure foward = {-center.x, -center.y};
     float * Tfoward = getTranslateMatrix(foward);
     float * rotate = getRotateMatrix(angle);
     float * Treturn = getTranslateMatrix(center);
+    int len = lengthPointList(polygon->vertex_list);
 
     multiplyMatrix2D(Treturn, rotate);
     multiplyMatrix2D(Treturn, Tfoward);
 
-    for(int i = 0; i < lengthPointList(polygon->vertex_list); i++)
+    for(int i = 0; i < len; i++)
     {
-        multiplyByPointMatrix2D(Treturn, &polygon->vertex_list[i]);
+        getPointList(polygon->vertex_list, i, &cpy);
+        multiplyByPointMatrix2D(Treturn, &cpy);
+        updatePointList(polygon->vertex_list, i, cpy);
     }
 
     free(Tfoward);
@@ -95,11 +99,20 @@ void rotate_polygon(Polygon_Figure *polygon, float angle) {
 }
 
 void translate_polygon(Polygon_Figure *polygon, Point_Figure offset) {
+    Point_Figure cpy;
+    Point_Figure center = polygon_get_centroid(*polygon);
+    Point_Figure foward = {-center.x, -center.y};
+    float * Tfoward = getTranslateMatrix(foward);
     float * translate = getTranslateMatrix(offset);
+    int len = lengthPointList(polygon->vertex_list);
 
-    for(int i = 0; i < lengthPointList(polygon->vertex_list); i++)
+    multiplyMatrix2D(translate, Tfoward);
+
+    for(int i = 0; i < len; i++)
     {
-        multiplyByPointMatrix2D(translate, &polygon->vertex_list[i]);
+        getPointList(polygon->vertex_list, i, &cpy);
+        multiplyByPointMatrix2D(translate, &cpy);
+        updatePointList(polygon->vertex_list, i, cpy);
     }
 
     free(translate);
@@ -107,18 +120,22 @@ void translate_polygon(Polygon_Figure *polygon, Point_Figure offset) {
 }
 
 void scale_polygon(Polygon_Figure *polygon, Point_Figure factor) {
+    Point_Figure cpy;
     Point_Figure center = polygon_get_centroid(*polygon);
     Point_Figure foward = {-center.x, -center.y};
     float * Tfoward = getTranslateMatrix(foward);
     float * scale = getScaleMatrix(factor);
     float * Treturn = getTranslateMatrix(center);
+    int len = lengthPointList(polygon->vertex_list);
 
     multiplyMatrix2D(Treturn, scale);
     multiplyMatrix2D(Treturn, Tfoward);
 
-    for(int i = 0; i < lengthPointList(polygon->vertex_list); i++)
+    for(int i = 0; i < len; i++)
     {
-        multiplyByPointMatrix2D(Treturn, &polygon->vertex_list[i]);
+        getPointList(polygon->vertex_list, i, &cpy);
+        multiplyByPointMatrix2D(Treturn, &cpy);
+        updatePointList(polygon->vertex_list, i, cpy);
     }
 
     free(Tfoward);

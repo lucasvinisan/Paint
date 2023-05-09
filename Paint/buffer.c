@@ -30,8 +30,8 @@ void buffer_init() {
     }
 }
 
-Buffer get_buffer() {
-    return buffer;
+Buffer *buffer_get() {
+    return &buffer;
 }
 
 void buffer_set_mode(int mode) {
@@ -219,11 +219,10 @@ void buffer_draw_all() {
 void buffer_translate_point() {
     Point_Figure point;
 
-    if(getLineList(buffer.points_buffer, buffer.select_index, &point) != -1) {
+    if(getPointList(buffer.points_buffer, buffer.select_index, &point) != -1) {
 
         translate_point(&point, buffer_get_mouse_down());
-
-        updatePointList(buffer.lines_buffer, buffer.select_index, point);
+        updatePointList(buffer.points_buffer, buffer.select_index, point);
     }
 }
 
