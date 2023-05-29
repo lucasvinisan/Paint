@@ -7,5 +7,10 @@ void design_Sphere();
 
 void design_toros();
 
+void design_wall();
+
 void lighting();
+
+void createmenu();
+
 #endif // DESIGN_H_INCLUDED

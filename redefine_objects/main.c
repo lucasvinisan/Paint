@@ -32,12 +32,12 @@ void display()
 
     //Definindo a posição da câmera
 
-    gluLookAt(100, 200, 80, //Posição da câmera
+    gluLookAt(5, 60, 30, //Posição da câmera
               0, 0, 0, //Para onde  a câmera aponta
               0, 1, 0);
 
 
-    glPushMatrix();
+    /*glPushMatrix();
     design_Teapot();
     glPopMatrix();
 
@@ -48,6 +48,11 @@ void display()
 
     glPushMatrix();
     design_toros();
+    glPopMatrix();
+
+    */
+    glPushMatrix();
+    design_wall();
     glPopMatrix();
 
     glutSwapBuffers();
@@ -62,6 +67,8 @@ int main(int argc, char **argv)
     glutInitWindowPosition(WINDOW_POSITION_X, WINDOW_POSITION_Y);
     glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGTH);
     glutCreateWindow("1° questão");
+    //glutMouseFunc(mouse);
+    CreateMenu();
 
     init();
     glutDisplayFunc(display);
