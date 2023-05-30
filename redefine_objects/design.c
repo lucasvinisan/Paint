@@ -1,25 +1,32 @@
 #include <GL/glut.h>
 
-struct scenario{
+typedef struct scenario{
     float translate_position_x, translate_position_y, translate_position_z;
     float rotate_position_x, rotate_position_y, rotate_position_z, rotate_angle;
     float scale_position_x, scale_posistion_y, scale_posistion_z;
     float size;
-};
-typedef struct scenario Scenario;
+}Scenario;
 
 void design_Teapot()
 {
-    glTranslatef(-140, 20, 150);
+    glTranslatef(-200, 2, 100);
     glColor3f(0, 1, 1);
-    glutSolidTeapot(80.f); //Tamanho do bule que aparecer� na tela
+    glutSolidTeapot(40); //Tamanho do bule que aparecer� na tela
 }
 
 void design_Sphere()
 {
-    glTranslatef(140, 20, -150);
+    glTranslatef(50, 10, 100);
     glColor3f(1.0, 1.0, 0.0);
-    glutSolidSphere(80, 50, 10);
+    glutSolidSphere(40, 100, 10);
+}
+
+void design_torus()
+{
+    glTranslatef(-50, -15, -60);
+    glRotatef(90, 1, 0, 0); //Rotaciona 90 graus em torno do eixo x
+    glColor3f(0, 1, 0);
+    glutSolidTorus(15, 40, 100, 100);
 }
 
 void design_wall()
@@ -97,13 +104,6 @@ void design_wall()
     glPopMatrix();
 }
 
-void design_toros()
-{
-    glTranslatef(300, 20, 150);
-    glRotatef(90, 1, 0, 0); //Rotaciona 90 graus em torno do eixo x
-    glColor3f(0, 1, 0);
-    glutSolidTorus(30, 80, 50, 50);
-}
 
 void createmenu()
 {

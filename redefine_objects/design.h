@@ -5,7 +5,7 @@ void design_Teapot();
 
 void design_Sphere();
 
-void design_toros();
+void design_torus();
 
 void design_wall();
 
