@@ -33,7 +33,7 @@ void display()
     //Definindo a posição da câmera
 
 
-    gluLookAt(-20, 50, 10, //Posição da câmera
+    gluLookAt(0.1, 0.1, 0.5, //Posição da câmera
               0, 0, 0, //Para onde  a câmera aponta
               0, 1, 0);
 

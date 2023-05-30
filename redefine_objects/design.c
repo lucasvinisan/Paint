@@ -1,11 +1,11 @@
 #include <GL/glut.h>
 
-typedef struct scenario{
+typedef struct scenery{
     float translate_position_x, translate_position_y, translate_position_z;
     float rotate_position_x, rotate_position_y, rotate_position_z, rotate_angle;
     float scale_position_x, scale_posistion_y, scale_posistion_z;
     float size;
-}Scenario;
+}Scenary;
 
 void design_Teapot()
 {
@@ -31,49 +31,49 @@ void design_torus()
 
 void design_wall()
 {
-    Scenario scenerio[3];
+    Scenary scenery[3];
 
-    scenerio[0].size = 100.0;
-    scenerio[1].size = 100.0;
-    scenerio[2].size = 100.0;
+    scenery[0].size = 100.0;
+    scenery[1].size = 100.0;
+    scenery[2].size = 100.0;
 
 
-    scenerio[0].translate_position_x = -50.0;
-    scenerio[0].translate_position_y = 0.0;
-    scenerio[0].translate_position_z = -206.0;
+    scenery[0].translate_position_x = -50.0;
+    scenery[0].translate_position_y = 0.0;
+    scenery[0].translate_position_z = -206.0;
 
-    /*scenerio[0].rotate_position_x = 0.0;
-    scenerio[0].rotate_position_y = 1.0;
-    scenerio[0].rotate_position_z = 0.0;
-    scenerio[0].rotate_angle = 40.0;*/
+    /*scenery[0].rotate_position_x = 0.0;
+    scenery[0].rotate_position_y = 1.0;
+    scenery[0].rotate_position_z = 0.0;
+    scenery[0].rotate_angle = 40.0;*/
 
-    scenerio[0].scale_position_x  = 5.0;
-    scenerio[0].scale_posistion_y = 1.0;
-    scenerio[0].scale_posistion_z = 0.2;
+    scenery[0].scale_position_x  = 5.0;
+    scenery[0].scale_posistion_y = 1.0;
+    scenery[0].scale_posistion_z = 0.2;
 
     //glScalef(0.3, 2.0, 10.0);
 
-    scenerio[1].translate_position_x = 200.0;
-    scenerio[1].translate_position_y = 0.0;
-    scenerio[1].translate_position_z = -6.0;
+    scenery[1].translate_position_x = 200.0;
+    scenery[1].translate_position_y = 0.0;
+    scenery[1].translate_position_z = -6.0;
 
-    /*scenerio[1].rotate_position_x = 1.0;
-    scenerio[1].rotate_position_y = 0.0;
-    scenerio[1].rotate_position_z = 0.0;
-    scenerio[1].rotate_angle = 40.0;*/
+    /*scenery[1].rotate_position_x = 1.0;
+    scenery[1].rotate_position_y = 0.0;
+    scenery[1].rotate_position_z = 0.0;
+    scenery[1].rotate_angle = 40.0;*/
 
-    scenerio[1].scale_position_x  = 0.2;
-    scenerio[1].scale_posistion_y = 1.0;
-    scenerio[1].scale_posistion_z = 4.15;
+    scenery[1].scale_position_x  = 0.2;
+    scenery[1].scale_posistion_y = 1.0;
+    scenery[1].scale_posistion_z = 4.15;
 
     /*Ch�o*/
-    scenerio[2].translate_position_x = -50.0;
-    scenerio[2].translate_position_y = -40.0;
-    scenerio[2].translate_position_z = 0.0;
+    scenery[2].translate_position_x = -50.0;
+    scenery[2].translate_position_y = -40.0;
+    scenery[2].translate_position_z = 0.0;
 
-    scenerio[2].scale_position_x  = 5.0;
-    scenerio[2].scale_posistion_y = 0.2;
-    scenerio[2].scale_posistion_z = 4.0;
+    scenery[2].scale_position_x  = 5.0;
+    scenery[2].scale_posistion_y = 0.2;
+    scenery[2].scale_posistion_z = 4.0;
 
     //glTranslatef(10, 20, 0);
     //glRotatef(90, 0, 1, 0);
@@ -81,26 +81,26 @@ void design_wall()
 
 
     glPushMatrix();
-    glTranslatef(scenerio[0].translate_position_x, scenerio[0].translate_position_y, scenerio[0].translate_position_z);
-    //glRotatef(scenerio[0].rotate_angle, scenerio[0].rotate_position_x, scenerio[0].rotate_position_y, scenerio[0].rotate_position_z);sca
-    glScalef(scenerio[0].scale_position_x, scenerio[0].scale_posistion_y, scenerio[0].scale_posistion_z);
+    glTranslatef(scenery[0].translate_position_x, scenery[0].translate_position_y, scenery[0].translate_position_z);
+    //glRotatef(scenery[0].rotate_angle, scenery[0].rotate_position_x, scenery[0].rotate_position_y, scenery[0].rotate_position_z);sca
+    glScalef(scenery[0].scale_position_x, scenery[0].scale_posistion_y, scenery[0].scale_posistion_z);
     glColor3f(1, 0, 0);
-    glutSolidCube(scenerio[0].size);
+    glutSolidCube(scenery[0].size);
     glPopMatrix();
 
     glPushMatrix();
-    glTranslatef(scenerio[1].translate_position_x, scenerio[1].translate_position_y, scenerio[1].translate_position_z);
-    //glRotatef(scenerio[1].rotate_angle, scenerio[1].rotate_position_x, scenerio[1].rotate_position_y, scenerio[1].rotate_position_z);
-    glScalef(scenerio[1].scale_position_x, scenerio[1].scale_posistion_y, scenerio[1].scale_posistion_z);
+    glTranslatef(scenery[1].translate_position_x, scenery[1].translate_position_y, scenery[1].translate_position_z);
+    //glRotatef(scenery[1].rotate_angle, scenery[1].rotate_position_x, scenery[1].rotate_position_y, scenery[1].rotate_position_z);
+    glScalef(scenery[1].scale_position_x, scenery[1].scale_posistion_y, scenery[1].scale_posistion_z);
     glColor3f(1, 0, 0);
-    glutSolidCube(scenerio[1].size);
+    glutSolidCube(scenery[1].size);
     glPopMatrix();
 
     glPushMatrix();
     glColor3f(1, 0, 0);
-    glTranslatef(scenerio[2].translate_position_x, scenerio[2].translate_position_y, scenerio[2].translate_position_z);
-    glScalef(scenerio[2].scale_position_x, scenerio[2].scale_posistion_y, scenerio[2].scale_posistion_z);
-    glutSolidCube(scenerio[2].size);
+    glTranslatef(scenery[2].translate_position_x, scenery[2].translate_position_y, scenery[2].translate_position_z);
+    glScalef(scenery[2].scale_position_x, scenery[2].scale_posistion_y, scenery[2].scale_posistion_z);
+    glutSolidCube(scenery[2].size);
     glPopMatrix();
 }
 
