@@ -35,6 +35,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="design.h" />
+		<Unit filename="figures.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="figures.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

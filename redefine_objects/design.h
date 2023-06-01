@@ -11,6 +11,5 @@ void design_wall();
 
 void lighting();
 
-void createmenu();
-
+void set_camera(float positio_x, float posistio_y, float position_z);
 #endif // DESIGN_H_INCLUDED

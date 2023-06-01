@@ -31,25 +31,7 @@ void display()
 
 
     //Definindo a posição da câmera
-
-
-    gluLookAt(0.1, 0.1, 0.5, //Posição da câmera
-              0, 0, 0, //Para onde  a câmera aponta
-              0, 1, 0);
-
-
-    glPushMatrix();
-    design_Teapot();
-    glPopMatrix();
-
-    glPushMatrix();
-    design_Sphere();
-    glPopMatrix();
-
-    glPushMatrix();
-    design_torus();
-    glPopMatrix();
-
+    set_camera(0.05, 0.0, 0.25);
 
     glPushMatrix();
     design_wall();
