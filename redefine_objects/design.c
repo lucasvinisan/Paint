@@ -78,7 +78,7 @@ void design_wall()
 
 void lighting()
 {
-    GLfloat position[4] = {0.0f, 0.01f, 0.0f, 0.0f}; //Posição da camêra
+    GLfloat position[4] = {0.0f, 1.0f, 0.0f, 0.0f}; //Posição da camêra
     GLfloat white[4]    = {1.0f, 1.0f, 1.0f, 1.0f}; //ùltimo elemento ó ahpa
     GLfloat black[4]    = {0.0f, 0.0f, 0.0f, 1.0f};
 

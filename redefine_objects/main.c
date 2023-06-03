@@ -20,13 +20,13 @@ void init()
     glLoadIdentity();
     glOrtho(-WINDOW_WIDTH, WINDOW_WIDTH, -WINDOW_HEIGTH, WINDOW_HEIGTH, -WINDOW_DEPTH, WINDOW_DEPTH);
 
-    set_camera(-1.0, 1.0, 1.0);
+    //set_camera(-1.0, 1.0, 1.0);
 
     /*Definindo a camerá perpectiva*/
-    /*glMatrixMode(GL_PROJECTION);
+    glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(120.0, WINDOW_WIDTH / WINDOW_HEIGTH, 0.1, 1200.0);
-    set_camera(10.0, 300.0, -200.0);*/
+    set_camera(-200.0, 100.0, -100.0);
     glEnable(GL_COLOR_MATERIAL);
     lighting();
 }
