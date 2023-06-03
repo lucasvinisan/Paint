@@ -7,7 +7,6 @@ typedef struct scenery{
     float rotate_position_x, rotate_position_y, rotate_position_z, rotate_angle;
     float scale_position_x, scale_posistion_y, scale_posistion_z;
     float size;
-    struct Figure* figure;
 }Scenary;
 
 
@@ -57,7 +56,7 @@ void design_wall()
     glTranslatef(scenery[0].translate_position_x, scenery[0].translate_position_y, scenery[0].translate_position_z);
     //glRotatef(scenery[0].rotate_angle, scenery[0].rotate_position_x, scenery[0].rotate_position_y, scenery[0].rotate_position_z);sca
     glScalef(scenery[0].scale_position_x, scenery[0].scale_posistion_y, scenery[0].scale_posistion_z);
-    set_color_red();
+    glColor3f(1.0f, 0.0, 0.0);
     glutSolidCube(scenery[0].size);
     glPopMatrix();
 
@@ -65,12 +64,12 @@ void design_wall()
     glTranslatef(scenery[1].translate_position_x, scenery[1].translate_position_y, scenery[1].translate_position_z);
     //glRotatef(scenery[1].rotate_angle, scenery[1].rotate_position_x, scenery[1].rotate_position_y, scenery[1].rotate_position_z);
     glScalef(scenery[1].scale_position_x, scenery[1].scale_posistion_y, scenery[1].scale_posistion_z);
-    set_color_red();
+    glColor3f(1.0f, 0.0, 0.0);
     glutSolidCube(scenery[1].size);
     glPopMatrix();
 
     glPushMatrix();
-    set_color_red();
+    glColor3f(1.0f, 0.0, 0.0);
     glScalef(scenery[2].scale_position_x, scenery[2].scale_posistion_y, scenery[2].scale_posistion_z);
     glutSolidCube(scenery[2].size);
     glPopMatrix();
@@ -79,7 +78,7 @@ void design_wall()
 
 void lighting()
 {
-    GLfloat position[4] = {-1.0f, 5.0f, -1.0f, 0.0f}; //Posição da camêra
+    GLfloat position[4] = {0.0f, 0.01f, 0.0f, 0.0f}; //Posição da camêra
     GLfloat white[4]    = {1.0f, 1.0f, 1.0f, 1.0f}; //ùltimo elemento ó ahpa
     GLfloat black[4]    = {0.0f, 0.0f, 0.0f, 1.0f};
 
@@ -102,14 +101,5 @@ void set_camera(float positio_x, float posistio_y, float position_z)
 }
 
 
-void set_color_red(){
-    glColor3f(1.0, 0.0, 0.0);
-}
-void set_color_green(){
-    glColor3f(0.0, 1.0, 0.0);
-}
-void set_color_blue(){
-    glColor3f(0.0, 0.0, 1.0);
-}
 
 

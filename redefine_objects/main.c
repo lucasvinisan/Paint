@@ -3,6 +3,7 @@
 #include <windows.h>
 #include <GL/glut.h>
 #include "design.h"
+#include "figures.h"
 
 #define WINDOW_WIDTH 800.0
 #define WINDOW_HEIGTH 600.0
@@ -25,15 +26,16 @@ void init()
     /*glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(120.0, WINDOW_WIDTH / WINDOW_HEIGTH, 0.1, 1200.0);
-    set_camera(10.0, 400.0, 100.0);*/
-    lighting();
+    set_camera(10.0, 300.0, -200.0);*/
     glEnable(GL_COLOR_MATERIAL);
+    lighting();
 }
 
 void display()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);//Limpar o buffer
     //Definindo a posição da câmera
+
 
     glPushMatrix();
     design_wall();
@@ -54,7 +56,10 @@ void display()
     create_Sphere();
     glPopMatrix();
 
-
+    glPushMatrix();
+    create_cone();
+    properties_Cone();
+    glPopMatrix();
 
     glutSwapBuffers();
 
