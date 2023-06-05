@@ -1,6 +1,15 @@
 #include <GL/glut.h>
 #include "figures.h"
 
+#define WINDOW_WIDTH 800.0
+#define WINDOW_HEIGTH 600.0
+#define WINDOW_DEPTH 600.0
+#define WINDOW_POSITION_X 200.0
+#define WINDOW_POSITION_Y 100.0
+
+#define positionx -1.0
+#define positiony 1.0
+#define positionz 1.0
 
 typedef struct scenery{
     float translate_position_x, translate_position_y, translate_position_z;
@@ -74,6 +83,26 @@ void design_wall()
     glutSolidCube(scenery[2].size);
     glPopMatrix();
 
+    glPushMatrix();
+    properties_Toros();
+    create_Torus();
+    glPopMatrix();
+
+    glPushMatrix();
+    properties_Teapot();
+    create_Teapot();
+    glPopMatrix();
+
+    glPushMatrix();
+    properties_Sphere();
+    create_Sphere();
+    glPopMatrix();
+
+    glPushMatrix();
+    properties_Cone();
+    create_cone();
+    glPopMatrix();
+
 }
 
 void lighting()
@@ -93,13 +122,64 @@ void lighting()
 }
 
 
-void set_camera(float positio_x, float posistio_y, float position_z)
+void set_camera(float position_x, float position_y, float position_z)
 {
-    gluLookAt(positio_x, posistio_y, position_z, //Posição da câmera
+    gluLookAt(position_x, position_y, position_z, //Posição da câmera
               0, 0, 0, //Para onde  a câmera aponta
               0, 1, 0);
 }
 
+void set_camera_ambinet()
+{
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho(-WINDOW_WIDTH, WINDOW_WIDTH, -WINDOW_HEIGTH, WINDOW_HEIGTH, -WINDOW_DEPTH, WINDOW_DEPTH);
+    set_camera(-1.0, 1.0, 1.0);
+}
+
+void set_camera_perpective()
+{
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(120.0, WINDOW_WIDTH / WINDOW_HEIGTH, 0.1, 1200.0);
+    set_camera(-200.0, 100.0, -100.0);
+}
 
 
+void select_menu(int option) {
+    switch(option) {
+        case 0:
+            set_camera_perpective();
+            break;
+        case 1:
+            set_camera_ambinet(positionx, positiony, positionz);
+            break;
+        case 2:
+            glEnable(GL_DEPTH_TEST);
+            break;
+        case 3:
+            glDisable(GL_DEPTH_TEST);
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        default:
+            break;
+    }
+    glutPostRedisplay();
+}
+
+void create_menu() {
+    int menu = glutCreateMenu(select_menu);
+
+    glutAddMenuEntry("Perspective camera", 0);
+    glutAddMenuEntry("Camera", 1);
+    glutAddMenuEntry("enable depth test", 2);
+    glutAddMenuEntry("Disable depth test", 3);
+    glutAddMenuEntry("Move camera", 4);
+    glutAddMenuEntry("Exit", 5);
+
+    glutAttachMenu(GLUT_RIGHT_BUTTON);
+}
 

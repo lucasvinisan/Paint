@@ -1,8 +1,7 @@
 #ifndef DESIGN_H_INCLUDED
 #define DESIGN_H_INCLUDED
 
-
-void set_camera(float positio_x, float posistio_y, float position_z);
+void set_camera(float position_x, float position_y, float position_z);
 
 void lighting();
 

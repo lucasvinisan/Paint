@@ -14,19 +14,14 @@
 
 void init()
 {
-    glClearColor(0.128f, 0.128f, 0.128f, 0.0f); //Definindo uma cor de fundo
-    glEnable(GL_DEPTH_TEST); //Habilitando o teste de profundidad
+    glClearColor(0.128f, 0.128f, 0.128f, 0.0f);
+    glEnable(GL_DEPTH_TEST); //Habilitando o teste de profundidade
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glOrtho(-WINDOW_WIDTH, WINDOW_WIDTH, -WINDOW_HEIGTH, WINDOW_HEIGTH, -WINDOW_DEPTH, WINDOW_DEPTH);
 
-    //set_camera(-1.0, 1.0, 1.0);
+    set_camera(-1.0, 1.0, 1.0);
 
-    /*Definindo a camerá perpectiva*/
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    gluPerspective(120.0, WINDOW_WIDTH / WINDOW_HEIGTH, 0.1, 1200.0);
-    set_camera(-200.0, 100.0, -100.0);
     glEnable(GL_COLOR_MATERIAL);
     lighting();
 }
@@ -34,31 +29,9 @@ void init()
 void display()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);//Limpar o buffer
-    //Definindo a posição da câmera
-
 
     glPushMatrix();
     design_wall();
-    glPopMatrix();
-
-    glPushMatrix();
-    properties_Toros();
-    create_Torus();
-    glPopMatrix();
-
-    glPushMatrix();
-    properties_Teapot();
-    create_Teapot();
-    glPopMatrix();
-
-    glPushMatrix();
-    properties_Sphere();
-    create_Sphere();
-    glPopMatrix();
-
-    glPushMatrix();
-    create_cone();
-    properties_Cone();
     glPopMatrix();
 
     glutSwapBuffers();
@@ -77,6 +50,7 @@ int main(int argc, char **argv)
 
     init();
     glutDisplayFunc(display);
+    create_menu();
     glutMainLoop();
     return 0;
 }
