@@ -22,16 +22,11 @@ typedef struct scenery{
 void design_wall()
 {
     Scenary scenery[3];
+    properties();
 
     scenery[0].size = 200.0;
     scenery[1].size = 200.0;
     scenery[2].size = 200.0;
-
-
-    /*scenery[0].rotate_position_x = 0.0;
-    scenery[0].rotate_position_y = 1.0;
-    scenery[0].rotate_position_z = 0.0;
-    scenery[0].rotate_angle = 40.0;*/
 
     /*Parede em x*/
 
@@ -83,23 +78,20 @@ void design_wall()
     glutSolidCube(scenery[2].size);
     glPopMatrix();
 
+
     glPushMatrix();
-    properties_Toros();
     create_Torus();
     glPopMatrix();
 
     glPushMatrix();
-    properties_Teapot();
     create_Teapot();
     glPopMatrix();
 
     glPushMatrix();
-    properties_Sphere();
     create_Sphere();
     glPopMatrix();
 
     glPushMatrix();
-    properties_Cone();
     create_cone();
     glPopMatrix();
 
@@ -107,7 +99,7 @@ void design_wall()
 
 void lighting()
 {
-    GLfloat position[4] = {0.0f, 1.0f, 0.0f, 0.0f}; //Posição da camêra
+    GLfloat position[4] = {-0.2f, 0.1f, 0.0f, 0.0f}; //Posição da camêra
     GLfloat white[4]    = {1.0f, 1.0f, 1.0f, 1.0f}; //ùltimo elemento ó ahpa
     GLfloat black[4]    = {0.0f, 0.0f, 0.0f, 1.0f};
 
@@ -117,6 +109,7 @@ void lighting()
     glLightfv(GL_LIGHT0, GL_SPECULAR, white);
 
     //Ativando iluminação
+    //glEnable(GL_COLOR_MATERIAL);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
 }
@@ -129,7 +122,7 @@ void set_camera(float position_x, float position_y, float position_z)
               0, 1, 0);
 }
 
-void set_camera_ambinet()
+void set_camera_ambiente()
 {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -142,7 +135,7 @@ void set_camera_perpective()
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(120.0, WINDOW_WIDTH / WINDOW_HEIGTH, 0.1, 1200.0);
-    set_camera(-200.0, 100.0, -100.0);
+    set_camera(-100.0, 100.0, 100.0);
 }
 
 
@@ -152,7 +145,7 @@ void select_menu(int option) {
             set_camera_perpective();
             break;
         case 1:
-            set_camera_ambinet(positionx, positiony, positionz);
+            set_camera_ambiente(positionx, positiony, positionz);
             break;
         case 2:
             glEnable(GL_DEPTH_TEST);
@@ -163,6 +156,12 @@ void select_menu(int option) {
         case 4:
             break;
         case 5:
+            glEnable(GL_COLOR_MATERIAL);
+            break;
+        case 6:
+            glDisable(GL_COLOR_MATERIAL);
+            break;
+        case 7:
             break;
         default:
             break;
@@ -175,10 +174,12 @@ void create_menu() {
 
     glutAddMenuEntry("Perspective camera", 0);
     glutAddMenuEntry("Camera", 1);
-    glutAddMenuEntry("enable depth test", 2);
+    glutAddMenuEntry("Enable depth test", 2);
     glutAddMenuEntry("Disable depth test", 3);
     glutAddMenuEntry("Move camera", 4);
-    glutAddMenuEntry("Exit", 5);
+    glutAddMenuEntry("Enable color material", 5);
+    glutAddMenuEntry("Disable color material", 6);
+    glutAddMenuEntry("Exit", 7);
 
     glutAttachMenu(GLUT_RIGHT_BUTTON);
 }

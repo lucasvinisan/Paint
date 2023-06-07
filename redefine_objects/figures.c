@@ -30,34 +30,11 @@ void create_Torus()
     glutSolidTorus(25.0f, 100.0f, 50, 50);
 }
 
-void properties_Sphere()
+void properties()
 {
-    float diffuse[4] = {0.8f, 0.66f, 0.0f, 1.0f};
-    float specular[4] = {0.8f, 0.9f, 0.8f, 1.0f};
-    float shininess = 120.0f;
-
-    glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, diffuse);
-    glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
-    glMaterialf(GL_FRONT, GL_SHININESS, shininess);
-}
-
-
-void properties_Toros()
-{
-    float diffuse[4] = {1.0f, 0.2f, 0.2f, 1.0f};
-    float specular[4] = {0.9f, 1.0f, 0.8f, 1.0f};
-    float shininess = 90.0f;
-
-    glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, diffuse);
-    glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
-    glMaterialf(GL_FRONT, GL_SHININESS, shininess);
-}
-
-void properties_Teapot()
-{
-    float diffuse[4] = {0.2f, 1.0f, 1.0f, 1.0f};
+    float diffuse[4] = {1.0f, 1.0f, 1.0f, 1.0f};
     float specular[4] = {1.0f, 1.0f, 1.0f, 1.0f};
-    float shininess = 90.0f;
+    float shininess = 80.0f;
 
     glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, diffuse);
     glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
@@ -65,13 +42,3 @@ void properties_Teapot()
 }
 
 
-void properties_Cone()
-{
-    float diffuse[4] = {1.0f, 0.5f, 0.0f, 1.0f};
-    float specular[4] = {1.0f, 1.0f, 1.0f, 1.0f};
-    float shininess = 100.0f;
-
-    glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, diffuse);
-    glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
-    glMaterialf(GL_FRONT, GL_SHININESS, shininess);
-}

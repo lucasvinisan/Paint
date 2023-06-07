@@ -9,12 +9,6 @@ void create_cone();
 
 void create_Torus();
 
-void properties_Sphere();
-
-void properties_Toros();
-
-void properties_Teapot();
-
-void properties_Cone();
+void properties();
 
 #endif // FIGURES_H_INCLUDED
