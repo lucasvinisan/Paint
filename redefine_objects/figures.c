@@ -16,7 +16,7 @@ void create_Sphere()
 
 void create_cone()
 {
-    glTranslatef(300, 0, -150);
+    glTranslatef(300, 10, -150);
     glRotatef(-90, 1, 0, 0);
     glColor3f(1.0, 0.5, 0.0);
     glutSolidCone(100, 200, 80, 80);

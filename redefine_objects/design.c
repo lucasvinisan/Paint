@@ -109,7 +109,7 @@ void lighting()
     glLightfv(GL_LIGHT0, GL_SPECULAR, white);
 
     //Ativando iluminação
-    //glEnable(GL_COLOR_MATERIAL);
+    glEnable(GL_COLOR_MATERIAL);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
 }

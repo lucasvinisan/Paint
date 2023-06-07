@@ -20,7 +20,7 @@ void init()
     glLoadIdentity();
     glOrtho(-WINDOW_WIDTH, WINDOW_WIDTH, -WINDOW_HEIGTH, WINDOW_HEIGTH, -WINDOW_DEPTH, WINDOW_DEPTH);
 
-    set_camera(-1.5, 1.0, 2.0);
+    set_camera(-0.5, 2.0, 1.0);
 
     lighting();
 }
